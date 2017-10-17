@@ -191,39 +191,51 @@ void ReverseConnectionsRec(lista *l, elListy *p, elListy *w)
 		*l = w;
 	}
 	
-	
 }
 
 void SortList(lista *l)
 {
-	int changes = 0, i = 0;
-	lista w = (*l);
-	lista p = (*l)->nast;
+
+		int changes = 0, i = 0;
+		lista w = (*l);
+		lista p = (*l)->nast;
 	
-	do
-	{
-		if(p == 0)
+		do
 		{
+			changes = 0;
 			*l = w;
 			p = w->nast;
-			changes = 0;
-		}
-		
-		if((*l)->klucz > p->klucz)
-		{
-			i = (*l)->klucz;
-			(*l)->klucz = p->klucz;
-			p->klucz = i;
-			changes++;
-			
-		}
-		*l = p;
-		p = p->nast;
-		printf("Hi\n");
-		
+			while((*l)->nast)
+			{
+				if((*l)->klucz > p->klucz)
+				{
+					i = (*l)->klucz;
+					(*l)->klucz = p->klucz;
+					p->klucz = i;
+					changes++;
+				}
+
+			*l = p;
+			p = p->nast;
+			}
 	}while(changes);
 	
 	*l = w;
 	
+}
+
+void RemoveEven(lista *l)
+{
+	while(*l)
+	{
+		if((*l)->klucz % 2 == 0)
+		{
+			RemoveFirst(&(*l));
+		}
+		else
+		{
+			l = &(*l)->nast;
+		}
+	}
 }
 

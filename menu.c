@@ -14,6 +14,7 @@ void DrawMenu()
 	printf("\n10) Remove all with specific value");
 	printf("\n11) Reverse connections");
 	printf("\n12) Sort list");
+	printf("\n13) Remove all even numbers");
 	printf("\n20) Quit\n>");
 }
 

@@ -64,6 +64,9 @@ int main()
 			case 12:
 				SortList(&list);
 				break;
+			case 13:
+				RemoveEven(&list);
+				break;
 			case 20:
 				exit = 0;
 				break;
