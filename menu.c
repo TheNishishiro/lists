@@ -12,7 +12,8 @@ void DrawMenu()
 	printf("\n8) Search for");
 	printf("\n9) Remove by index");
 	printf("\n10) Remove all with specific value");
-	printf("\n11) Reverse Connections");
+	printf("\n11) Reverse connections");
+	printf("\n12) Sort list");
 	printf("\n20) Quit\n>");
 }
 

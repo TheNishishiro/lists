@@ -61,6 +61,9 @@ int main()
 				ReverseConnectionsRec(&list, 0, 0);
 				//ReverseConnections(&list);
 				break;
+			case 12:
+				SortList(&list);
+				break;
 			case 20:
 				exit = 0;
 				break;
