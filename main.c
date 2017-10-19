@@ -63,7 +63,7 @@ int main()
 				//ReverseConnections(&list);
 				break;
 			case 12:
-				printf("Srotowanie z wartownikiem czy bez? [0/1]\n>");
+				printf("Sortowanie z wartownikiem czy bez? [0/1]\n>");
 				scanf("%d", &number);
 				SortList(&list, number);
 				break;
