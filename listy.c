@@ -162,40 +162,56 @@ void SearchList(lista list, int number)
 	system("pause");
 }
 
-void ReverseConnections(lista *l)
+void ReverseConnectionHelper(lista *l, lista *w, lista *p)
 {
-	elListy *p = 0, *w = 0;
-	while(*l)
-	{
-		p = (*l)->nast;
-		(*l)->nast = w;
-		w = *l;
-		*l = p;
-	}
-	*l = w;
+		*p = (*l)->nast;
+		(*l)->nast = *w;
+		*w = *l;
+		*l = *p;	
 }
 
-void ReverseConnectionsRec(lista *l, elListy *p, elListy *w)
+void ReverseConnections(lista *l)
+{
+	lista p = 0, w = 0;
+	while(*l)
+		ReverseConnectionHelper(l, &w, &p);
+		
+	*l = w;
+	free(p);
+}
+
+void ReverseConnectionsRec(lista *l, lista p, lista w)
 {
 	if(*l)
 	{
-		p = (*l)->nast;
-		(*l)->nast = w;
-		w = *l;
-		*l = p;
-		printf("hello\n");
+		ReverseConnectionHelper(l,&w,&p);
 		ReverseConnectionsRec(l, p, w);
 	}
 	else
-	{
 		*l = w;
-	}
-	
 }
 
-void SortList(lista *l)
+int SortWhileHelper(lista *l, lista *p, int changes)
 {
+	int i = 0;
+	if((*l)->klucz > (*p)->klucz)
+	{
+		i = (*l)->klucz;
+		(*l)->klucz = (*p)->klucz;
+		(*p)->klucz = i;
+		changes++;
+	}
+	*l = *p;
+	*p = (*p)->nast;
 
+	return changes;
+}
+
+void SortList(lista *l, int Wartownik)
+{
+		if(Wartownik != 0)
+			AddElementAtEnd(l, -1);
+		
 		int changes = 0, i = 0;
 		lista w = (*l);
 		lista p = (*l)->nast;
@@ -205,24 +221,28 @@ void SortList(lista *l)
 			changes = 0;
 			*l = w;
 			p = w->nast;
-			while((*l)->nast)
+			if(Wartownik != 0)
 			{
-				if((*l)->klucz > p->klucz)
+				while(p->klucz != -1)
 				{
-					i = (*l)->klucz;
-					(*l)->klucz = p->klucz;
-					p->klucz = i;
-					changes++;
+					changes = SortWhileHelper(l, &p, changes);
 				}
-
-			*l = p;
-			p = p->nast;
 			}
+			else
+			{	
+				while((*l)->nast)
+				{	
+					changes = SortWhileHelper(l, &p, changes);
+				}
+			}
+			
 	}while(changes);
-	
 	*l = w;
 	
+	if(Wartownik != 0)
+		RemoveLast(l);
 }
+
 
 void RemoveEven(lista *l)
 {

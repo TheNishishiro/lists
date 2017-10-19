@@ -56,13 +56,16 @@ int main()
 				printf("Number: ");
 				scanf("%d", &number);
 				RemoveAllOfRec(&list, number);
+				//RemoveAllOf(&list, number);
 				break;
 			case 11:
 				ReverseConnectionsRec(&list, 0, 0);
 				//ReverseConnections(&list);
 				break;
 			case 12:
-				SortList(&list);
+				printf("Srotowanie z wartownikiem czy bez? [0/1]\n>");
+				scanf("%d", &number);
+				SortList(&list, number);
 				break;
 			case 13:
 				RemoveEven(&list);

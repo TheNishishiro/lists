@@ -22,7 +22,8 @@ void RemoveElement(lista *l, int index);
 void RemoveAllOf(lista *l, int number);
 void RemoveAllOfRec(lista *l, int number);
 void ReverseConnections(lista *l);
-void SortList(lista *l);
+void SortList(lista *l, int Wartownik);
+void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
 
 #endif
