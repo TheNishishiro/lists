@@ -26,4 +26,5 @@ void SortList(lista *l, int Wartownik);
 void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
 
+
 #endif

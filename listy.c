@@ -259,3 +259,16 @@ void RemoveEven(lista *l)
 	}
 }
 
+lista MergeLists(lista *list, lista *list2)
+{
+	lista merged = 0;
+	while(*list){
+		AddElement(&merged, (*list)->klucz);
+	}
+	while(*list2){
+		AddElement(&merged, (*list2)->klucz);
+	}
+	SortList(&merged, 0);
+	PrintList(merged);
+	return merged;
+}

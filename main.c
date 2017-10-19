@@ -6,10 +6,16 @@
 int main()
 {
 	lista list = 0;
+	lista list2 = 0;
 	int number = 0, options = 0, exit = 1;
 	
 	int i=0;
-
+	
+	AddElement(&list2, 4);
+	AddElement(&list2, 6);
+	AddElement(&list2, 2);
+	AddElement(&list2, 8);
+	
 	while(exit)
 	{
 		DrawMenu();
