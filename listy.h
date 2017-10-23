@@ -12,6 +12,7 @@ void PrintList(lista list);
 void AddElement(lista *l, int i);
 void AddElementAtEnd(lista *l, int i);
 void AddElementSorted(lista *l, int value);
+void AddElementSortedRec(lista *l, lista p, lista w, lista q, int value);
 void FreeList(lista *l);
 void FreeListRec(lista *l);
 void RemoveFirst(lista *l);

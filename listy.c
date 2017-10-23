@@ -32,6 +32,23 @@ void AddElementAtEnd(lista *l, int i)
 	*l = p;
 }
 
+void AddInTheMiddle(lista *l, lista *p, lista *w, lista *q, int value)
+{
+	*p = (lista)malloc(sizeof(elListy));
+	(*p)->klucz = value;
+	(*p)->nast = *l;
+	(*w)->nast = *p;
+	*l = *q;
+}
+
+void AddFirst(lista *l, lista *p, lista *w, int value)
+{
+	(*p) = (lista)malloc(sizeof(elListy));
+	(*p)->klucz = value;
+	(*p)->nast = *w;
+	*l = *p;
+}
+
 void AddElementSorted(lista *l, int value)
 {
 	lista p = 0, w = *l, q = *l;
@@ -44,19 +61,12 @@ void AddElementSorted(lista *l, int value)
 	{
 		if((*l == 0 || (*l)->klucz >= value) && w != *l)
 		{
-			p = (lista)malloc(sizeof(elListy));
-			p->klucz = value;
-			p->nast = *l;
-			w->nast = p;
-			*l = q;
+			AddInTheMiddle(l, &p, &w, &q, value);
 			return;
 		}
 		else if(w == *l && (*l)->klucz >= value)
 		{
-			p = (lista)malloc(sizeof(elListy));
-			p->klucz = value;
-			p->nast = w;
-			*l = p;
+			AddFirst(l, &p, &w, value);
 			return;
 		}
 		else
@@ -64,6 +74,36 @@ void AddElementSorted(lista *l, int value)
 			w = *l;
 			*l = (*l)->nast;
 		}
+	}
+}
+
+void AddElementSortedRec(lista *l, lista p, lista w, lista q, int value)
+{
+	if(q == 0)
+	{
+		w = *l;
+		q = *l;
+		if(*l == 0)
+		{
+			AddElement(l, value);
+			return;
+		}
+	}		
+	if((*l == 0 || (*l)->klucz >= value) && w != *l)
+	{
+		AddInTheMiddle(l, &p, &w, &q, value);
+		return;
+	}
+	else if(w == *l && (*l)->klucz >= value)
+	{
+		AddFirst(l, &p, &w, value);
+		return;
+	}
+	else
+	{
+		w = *l;
+		*l = (*l)->nast;
+		AddElementSortedRec(l, p, w, q, value);
 	}
 }
 

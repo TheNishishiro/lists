@@ -80,7 +80,8 @@ int main()
 			case 14:
 				printf("Number: ");
 				scanf("%d", &number);
-				AddElementSorted(&list, number);
+			//	AddElementSorted(&list, number);
+				AddElementSortedRec(&list, 0, 0, 0, number);
 				break;
 			case 20:
 				exit = 0;
