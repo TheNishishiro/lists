@@ -32,6 +32,41 @@ void AddElementAtEnd(lista *l, int i)
 	*l = p;
 }
 
+void AddElementSorted(lista *l, int value)
+{
+	lista p = 0, w = *l, q = *l;
+	if(*l == 0)
+	{
+		AddElement(l, value);
+		return;
+	}
+	while(1)
+	{
+		if((*l == 0 || (*l)->klucz >= value) && w != *l)
+		{
+			p = (lista)malloc(sizeof(elListy));
+			p->klucz = value;
+			p->nast = *l;
+			w->nast = p;
+			*l = q;
+			return;
+		}
+		else if(w == *l && (*l)->klucz >= value)
+		{
+			p = (lista)malloc(sizeof(elListy));
+			p->klucz = value;
+			p->nast = w;
+			*l = p;
+			return;
+		}
+		else
+		{
+			w = *l;
+			*l = (*l)->nast;
+		}
+	}
+}
+
 void FreeList(lista *l)
 {
 	lista p = *l;
@@ -40,6 +75,20 @@ void FreeList(lista *l)
 		*l = (*l)->nast;
 		free(p);
 		p = *l;
+	}
+}
+
+void FreeListRec(lista *l)
+{
+	if(*l != 0)
+	{
+		lista p = *l;
+		if(p != 0)
+		{
+			*l = (*l)->nast;
+			free(p);
+			FreeListRec(l);
+		}
 	}
 }
 

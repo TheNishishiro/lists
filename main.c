@@ -39,7 +39,8 @@ int main()
 				RemoveLast(&list);
 				break;
 			case 5:
-				FreeList(&list);
+				//FreeList(&list);
+				FreeListRec(&list);
 				break;
 			case 6:
 				PrintReversedListRec(list);
@@ -75,6 +76,11 @@ int main()
 				break;
 			case 13:
 				RemoveEven(&list);
+				break;
+			case 14:
+				printf("Number: ");
+				scanf("%d", &number);
+				AddElementSorted(&list, number);
 				break;
 			case 20:
 				exit = 0;
