@@ -28,6 +28,6 @@ void ReverseConnections(lista *l);
 void SortList(lista *l, int Wartownik);
 void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
-
+void MergeLists(lista *l1, lista *l2);
 
 #endif

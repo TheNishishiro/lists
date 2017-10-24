@@ -348,16 +348,26 @@ void RemoveEven(lista *l)
 	}
 }
 
-lista MergeLists(lista *list, lista *list2)
+void MergeLists(lista *l1, lista *l2)
 {
-	lista merged = 0;
-	while(*list){
-		AddElement(&merged, (*list)->klucz);
+	lista w = *l1;
+	lista p = *l2;
+	lista q = *l1;
+	while(*l2)
+	{
+		if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
+		{
+			w = (*l1)->nast;
+			p = (*l2)->nast;
+			(*l1)->nast = *l2;
+			*l1 = *l2;
+			*l2 = w;
+		}
+		else
+		{
+			*l1 = (*l1)->nast;
+			p = (*l1)->nast;
+		}
 	}
-	while(*list2){
-		AddElement(&merged, (*list2)->klucz);
-	}
-	SortList(&merged, 0);
-	PrintList(merged);
-	return merged;
+	*l1 = q;
 }

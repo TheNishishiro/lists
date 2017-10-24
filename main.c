@@ -11,10 +11,13 @@ int main()
 	
 	int i=0;
 	
-	AddElement(&list2, 4);
-	AddElement(&list2, 6);
+	AddElement(&list2, 1);
 	AddElement(&list2, 2);
-	AddElement(&list2, 8);
+	AddElement(&list2, 3);
+	AddElement(&list2, 4);
+	AddElement(&list2, 5);
+	AddElement(&list2, 9);
+	SortList(&list2, 0);
 	
 	while(exit)
 	{
@@ -82,6 +85,9 @@ int main()
 				scanf("%d", &number);
 			//	AddElementSorted(&list, number);
 				AddElementSortedRec(&list, 0, 0, 0, number);
+				break;
+			case 15:
+				MergeLists(&list, &list2);
 				break;
 			case 20:
 				exit = 0;
