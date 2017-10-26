@@ -406,7 +406,7 @@ void FindDifference(lista *l1, lista *l2)
 	
 	while(*l2)
 	{
-		if(SearchList(&l1, (*l2)->klucz, 1) == 0)
+		if(SearchList(head_l1, (*l2)->klucz, 1) == 0)
 		{
 			AddElementAtEnd(&l1_missing, (*l2)->klucz);
 		}
@@ -417,9 +417,7 @@ void FindDifference(lista *l1, lista *l2)
 
 	while(*l1)
 	{
-		printf("%d - %d",(*l1)->klucz, SearchList(&l2, (*l1)->klucz, 1));
-		system("pause");
-		if(SearchList(&l2, (*l1)->klucz, 1) == 0)
+		if(SearchList(head_l2, (*l1)->klucz, 1) == 0)
 		{
 			AddElementAtEnd(&l2_missing, (*l1)->klucz);
 		}
