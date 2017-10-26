@@ -234,7 +234,7 @@ void PrintReversedListRec(lista l)
 	}
 }
 
-void SearchList(lista list, int number)
+int SearchList(lista list, int number, int first)
 {
 	lista l = list;
 	int i = 0;
@@ -242,13 +242,21 @@ void SearchList(lista list, int number)
 	{
 		if(l->klucz == number)
 		{
-			printf("\nFound %d at index %d", number, i);	
+			if(first == 0)
+				printf("\nFound %d at index %d", number, i);	
+			if(first == 1)
+				return 1;
 		}
 		l = l->nast; 
 		i++;
 	}
-	printf("\n");
-	system("pause");
+	
+	if(first == 0)
+	{
+		printf("\n");
+		system("pause");
+	}
+	return 0;
 }
 
 void ReverseConnectionHelper(lista *l, lista *w, lista *p)
@@ -350,9 +358,21 @@ void RemoveEven(lista *l)
 
 void MergeLists(lista *l1, lista *l2)
 {
-	lista w = *l1;
-	lista p = *l2;
-	lista q = *l1;
+	if(*l1 != 0)
+	{
+	lista w = 0, p = 0, q = 0, e = *l2;
+	if((*l1)->klucz <= (*l2)->klucz)
+	{
+		w = *l1;
+		p = *l2;
+		q = *l1;
+	}
+	else
+	{
+		w = *l2;
+		p = *l1;
+		q = *l2;	
+	}
 	while(*l2)
 	{
 		if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
@@ -370,4 +390,49 @@ void MergeLists(lista *l1, lista *l2)
 		}
 	}
 	*l1 = q;
+	}
+	else
+	{
+		*l1 = *l2;
+	}
+}
+
+void FindDifference(lista *l1, lista *l2)
+{
+	lista l1_missing = 0;
+	lista l2_missing = 0;
+	lista head_l1 = *l1;
+	lista head_l2 = *l2;
+	
+	while(*l2)
+	{
+		if(SearchList(&l1, (*l2)->klucz, 1) == 0)
+		{
+			AddElementAtEnd(&l1_missing, (*l2)->klucz);
+		}
+		*l2 = (*l2)->nast;
+	}
+	*l2 = head_l2;
+	*l1 = head_l1;
+
+	while(*l1)
+	{
+		printf("%d - %d",(*l1)->klucz, SearchList(&l2, (*l1)->klucz, 1));
+		system("pause");
+		if(SearchList(&l2, (*l1)->klucz, 1) == 0)
+		{
+			AddElementAtEnd(&l2_missing, (*l1)->klucz);
+		}
+		*l1 = (*l1)->nast;
+	}
+	
+	
+	printf("Not found in list1 that are present in list2:\n");
+	PrintList(l1_missing);
+	printf("Not found in list2 that are present in list1:\n");
+	PrintList(l2_missing);
+	
+	*l1 = head_l1;
+	*l2 = head_l2;
+	system("pause");
 }

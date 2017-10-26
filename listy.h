@@ -20,7 +20,7 @@ void RemoveLast(lista *l);
 lista ReverseList(lista *l);
 void PrintReversedList(lista *l);
 void PrintReversedListRec(lista l);
-void SearchList(lista list, int number);
+int SearchList(lista list, int number, int first);
 void RemoveElement(lista *l, int index);
 void RemoveAllOf(lista *l, int number);
 void RemoveAllOfRec(lista *l, int number);
@@ -29,5 +29,6 @@ void SortList(lista *l, int Wartownik);
 void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
 void MergeLists(lista *l1, lista *l2);
+void FindDifference(lista *l1, lista *l2);
 
 #endif

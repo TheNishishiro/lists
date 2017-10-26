@@ -19,6 +19,7 @@ int main()
 	AddElement(&list2, 9);
 	SortList(&list2, 0);
 	
+	
 	while(exit)
 	{
 		DrawMenu();
@@ -55,7 +56,7 @@ int main()
 			case 8:
 				printf("Number: ");
 				scanf("%d", &number);
-				SearchList(list, number);
+				SearchList(list, number, 0);
 				break;
 			case 9:
 				printf("Index: ");
@@ -89,6 +90,9 @@ int main()
 			case 15:
 				MergeLists(&list, &list2);
 				break;
+			case 16:
+				FindDifference(&list, &list2);
+				break;
 			case 20:
 				exit = 0;
 				break;
@@ -99,6 +103,7 @@ int main()
 		system("cls");
 		
 		PrintList(list);
+		PrintList(list2);
 	}
 	
 	
