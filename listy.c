@@ -355,41 +355,41 @@ void RemoveEven(lista *l)
 		}
 	}
 }
-
+// NOT WORKING FOR LOWER AND GREATER AS FIRST ELEMENT
 void MergeLists(lista *l1, lista *l2)
 {
 	if(*l1 != 0)
 	{
-	lista w = 0, p = 0, q = 0, e = *l2;
-	if((*l1)->klucz <= (*l2)->klucz)
-	{
-		w = *l1;
-		p = *l2;
-		q = *l1;
-	}
-	else
-	{
-		w = *l2;
-		p = *l1;
-		q = *l2;	
-	}
-	while(*l2)
-	{
-		if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
+		lista w = 0, p = 0, q = 0, e = *l2;
+		if((*l1)->klucz <= (*l2)->klucz)
 		{
-			w = (*l1)->nast;
-			p = (*l2)->nast;
-			(*l1)->nast = *l2;
-			*l1 = *l2;
-			*l2 = w;
+			w = *l1;
+			p = *l2;
+			q = *l1;
 		}
 		else
 		{
-			*l1 = (*l1)->nast;
-			p = (*l1)->nast;
+			w = *l2;
+			p = *l1;
+			q = *l2;	
 		}
-	}
-	*l1 = q;
+		while(*l2)
+		{
+			if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
+			{
+				w = (*l1)->nast;
+				p = (*l2)->nast;
+				(*l1)->nast = *l2;
+				*l1 = *l2;
+				*l2 = w;
+			}
+			else
+			{
+				*l1 = (*l1)->nast;
+				p = (*l1)->nast;
+			}
+		}
+		*l1 = q;
 	}
 	else
 	{
