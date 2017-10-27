@@ -400,6 +400,7 @@ void MergeLists(lista *l1, lista *l2)
 				*l1 = (*l1)->nast;
 				p = (*l1)->nast;
 			}
+			element = 1;
 		}
 		*l1 = q;
 	}

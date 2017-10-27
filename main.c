@@ -11,12 +11,37 @@ int main()
 	
 	int i=0;
 	
+	AddElement(&list, 1);
+	AddElement(&list, 2);
+	AddElement(&list, 3);
+	AddElement(&list, 5);
+	AddElement(&list, 6);
+	AddElement(&list, 8);
+	AddElement(&list, 10);
+	AddElement(&list, 12);
+	AddElement(&list, 13);
+	AddElement(&list, 14);
+	AddElement(&list, 18);
+	AddElement(&list, 20);
+	AddElement(&list, 24);
+	AddElement(&list, 25);
+	AddElement(&list, 25);
+	
 	AddElement(&list2, 1);
 	AddElement(&list2, 2);
-	AddElement(&list2, 3);
+	AddElement(&list2, 2);
 	AddElement(&list2, 4);
 	AddElement(&list2, 5);
+	AddElement(&list2, 7);
 	AddElement(&list2, 9);
+	AddElement(&list2, 11);
+	AddElement(&list2, 12);
+	AddElement(&list2, 13);
+	AddElement(&list2, 15);
+	AddElement(&list2, 20);
+	AddElement(&list2, 24);
+	AddElement(&list2, 24);
+	AddElement(&list2, 25);
 	SortList(&list2, 0);
 	
 	
