@@ -360,7 +360,8 @@ void MergeLists(lista *l1, lista *l2)
 {
 	if(*l1 != 0)
 	{
-		lista w = 0, p = 0, q = 0, e = *l2;
+		lista w = 0, p = 0, q = 0;
+		int element = 0;
 		if((*l1)->klucz <= (*l2)->klucz)
 		{
 			w = *l1;
@@ -375,7 +376,18 @@ void MergeLists(lista *l1, lista *l2)
 		}
 		while(*l2)
 		{
-			if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
+			if(element == 0 && w->nast == 0)
+			{
+				w->nast = p;
+				break;
+			}
+			else if(element == 0 && p->nast == 0)
+			{
+				p->nast = w->nast;
+				w->nast = p;
+				break;
+			}
+			else if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
 			{
 				w = (*l1)->nast;
 				p = (*l2)->nast;
