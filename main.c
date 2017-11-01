@@ -1,31 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listy.h"
+#include "listyC.h"
 #include "menu.h"
+#include "listyNC.h"
+#include "listyOC.h"
 
 int main()
 {
 	lista list = 0;
 	lista list2 = 0;
+	listaC listC = 0;
+	
+	listaOC listOC = 0, ostatni = 0;
+	listaOC listOC2 = 0, ostatni2 = 0;
+	
+	
+	listaNC listNC = 0;
 	int number = 0, options = 0, exit = 1;
+	int printType = 0, page = 0;
 	
 	int i=0;
-	
-	AddElement(&list, 1);
-	AddElement(&list, 2);
-	AddElement(&list, 3);
-	AddElement(&list, 5);
-	AddElement(&list, 6);
-	AddElement(&list, 8);
-	AddElement(&list, 10);
-	AddElement(&list, 12);
-	AddElement(&list, 13);
-	AddElement(&list, 14);
-	AddElement(&list, 18);
-	AddElement(&list, 20);
-	AddElement(&list, 24);
-	AddElement(&list, 25);
-	AddElement(&list, 25);
 	
 	AddElement(&list2, 1);
 	AddElement(&list2, 2);
@@ -44,13 +39,40 @@ int main()
 	AddElement(&list2, 25);
 	SortList(&list2, 0);
 	
+	AddElementOC(&listOC2, &ostatni2, 1);
+	AddElementOC(&listOC2, &ostatni2, 3);
+	AddElementOC(&listOC2, &ostatni2, 5);
+	AddElementOC(&listOC2, &ostatni2, 7);
+	AddElementOC(&listOC2, &ostatni2, 9);
+	AddElementOC(&listOC2, &ostatni2, 11);
 	
 	while(exit)
 	{
-		DrawMenu();
+		
+		DrawMenu(page, &printType);
+		
+		if(printType == 0)
+			PrintList(list);
+		else if(printType == 1)
+			PrintListNC(listNC);
+		else if(printType == 2)
+			PrintListC(listC);
+		else if(printType == 3)
+			PrintListOC(listOC);
+				
+		printf("\n>");
+		
+			
 		scanf("%d", &options);
 		switch(options)
 		{
+			case -1:
+				if(page > 0)
+					page -= 1;
+				break;
+			case -2:
+				page += 1;
+				break;
 			case 1:
 				printf("Number: ");
 				scanf("%d", &number);
@@ -118,7 +140,52 @@ int main()
 			case 16:
 				FindDifference(&list, &list2);
 				break;
-			case 20:
+			case 21:
+				printf("Number: ");
+				scanf("%d", &number);
+				AddElementNC(&listNC, number);
+				break;
+			case 22:
+				RemoveElementNC(&listNC);
+				break;	
+			case 23:
+				FreeListNC(&listNC);
+				break;
+			case 24:
+				printf("Number: ");
+				scanf("%d", &number);
+				FindElementNC(listNC, number);
+				break;
+			case 31:
+				printf("Number: ");
+				scanf("%d", &number);
+				AddElementC(&listC, number);
+				break;
+			case 32:
+				RemoveElementC(&listC);
+				break;	
+			case 33:
+				FreeListC(&listC);
+				break;
+			case 34:
+				printf("Number: ");
+				scanf("%d", &number);
+				FindElementC(listC, number);
+				break;	
+			case 35:
+				printf("Remove every: ");
+				scanf("%d", &number);
+				RemoveEveryOther(&listC, number);
+				break;
+			case 41:
+				printf("Number: ");
+				scanf("%d", &number);
+				AddElementOC(&listOC, &ostatni, number);
+				break;	
+			case 42:
+				RemoveInEach(&listOC, &listOC2);
+				break;
+			case 60:
 				exit = 0;
 				break;
 			default:
@@ -127,8 +194,7 @@ int main()
 
 		system("cls");
 		
-		PrintList(list);
-		PrintList(list2);
+		
 	}
 	
 	

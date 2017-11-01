@@ -2,7 +2,7 @@
 
 void PrintList(lista list)
 {
-	printf("Lista: ");
+	printf("List: ");
 	lista l = list;
 	while (l)
 	{
@@ -355,7 +355,7 @@ void RemoveEven(lista *l)
 		}
 	}
 }
-// NOT WORKING FOR LOWER AND GREATER AS FIRST ELEMENT
+
 void MergeLists(lista *l1, lista *l2)
 {
 	if(*l1 != 0)
