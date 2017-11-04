@@ -21,6 +21,8 @@ void DrawMenu(int page, int *printType)
 	printf("\n14) Add sorted element");
 	printf("\n15) Merge lists");
 	printf("\n16) Find difference between lists");
+	printf("\n17) FIFO add");
+	printf("\n18) FIFO take");
 	*printType = 0;
 	}
 	else if(page == 1)

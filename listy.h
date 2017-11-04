@@ -30,5 +30,7 @@ void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
 void MergeLists(lista *l1, lista *l2);
 void FindDifference(lista *l1, lista *l2);
+void FIFOadd(lista *l, lista *p, int i);
+void FIFO(lista *l);
 
 #endif

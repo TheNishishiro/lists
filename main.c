@@ -140,6 +140,14 @@ int main()
 			case 16:
 				FindDifference(&list, &list2);
 				break;
+			case 17:
+				printf("Number: ");
+				scanf("%d", &number);
+				FIFOadd(&list, &ostatni, number);
+				break;
+			case 18:
+				FIFO(&list);
+				break;
 			case 21:
 				printf("Number: ");
 				scanf("%d", &number);

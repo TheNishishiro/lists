@@ -447,3 +447,33 @@ void FindDifference(lista *l1, lista *l2)
 	*l2 = head_l2;
 	system("pause");
 }
+
+void FIFOadd(lista *l, lista *p, int i)
+{
+	lista w = (lista)malloc(sizeof(elListy));
+	w->klucz = i;
+	if(*l == 0)
+	{
+		*l = w;
+		*p = w;
+		w->nast = 0;
+	}
+	else
+	{
+		(*p)->nast = w;
+		w->nast = 0;
+		*p = w;
+	}
+}
+void FIFO(lista *l)
+{
+	if((*l)!=0)
+	{
+		lista p = *l;
+		*l = (*l)->nast;
+		printf("FIFO out: %d \n", p->klucz);
+		free(p);
+		system("pause");
+	}
+}
+
