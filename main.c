@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "listyNC.h"
 #include "listyOC.h"
+#include "binaryTree.h"
 
 int main()
 {
@@ -14,9 +15,11 @@ int main()
 	
 	listaOC listOC = 0, ostatni = 0;
 	listaOC listOC2 = 0, ostatni2 = 0;
-	
-	
+
 	listaNC listNC = 0;
+	
+	drzewo tree = 0, *w;
+	
 	int number = 0, options = 0, exit = 1;
 	int printType = 0, page = 0;
 	
@@ -59,7 +62,9 @@ int main()
 			PrintListC(listC);
 		else if(printType == 3)
 			PrintListOC(listOC);
-				
+		else if(printType == 4)
+			PrintBinaryTree(tree);
+					
 		printf("\n>");
 		
 			
@@ -192,6 +197,36 @@ int main()
 				break;	
 			case 42:
 				RemoveInEach(&listOC, &listOC2);
+				break;
+			case 51:
+				printf("Number: ");
+				scanf("%d", &number);
+				AddToBinaryTree(&tree, number);
+				break;
+			case 52:
+				printf("Number: ");
+				scanf("%d", &number);
+				RemoveFromBinaryTree(&tree, number);
+				break;
+			case 53:
+				printf("Number: ");
+				scanf("%d", &number);
+				w = FindInBinaryTree(&tree, number);
+				if(w != 0)
+					printf("%d\n", (*w)->klucz);
+				system("pause");
+				break;
+			case 54:
+				w = FindMaxBinaryTree(&tree);
+				if(w != 0)
+					printf("Max: %d\n", w);
+				w = FindMinBinaryTree(&tree);
+				if(w != 0)
+					printf("Min: %d\n", w);
+				system("pause");
+				break;
+			case 55:
+				FreeBinaryTree(&tree);
 				break;
 			case 60:
 				exit = 0;

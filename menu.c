@@ -48,6 +48,15 @@ void DrawMenu(int page, int *printType)
 	printf("\n42) Remove present in other");
 	*printType = 3;
 	}
+	else if(page == 4)
+	{
+		printf("\n51 Add to binary tree");
+		printf("\n52 Remove from binary tree");
+		printf("\n53 Search in binary tree");
+		printf("\n54 Find min and max in binary tree");
+		printf("\n55 Free binary tree");
+		*printType = 4;
+	}
 	
 	printf("\n---------------------------------------------------");
 	printf("\n60) Quit");

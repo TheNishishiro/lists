@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o
-LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o
+OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o
+LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o
 LIBS     = -L"D:/Programs/Dev-Cpp/MinGW64/lib" -L"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -41,3 +41,6 @@ listyNC.o: listyNC.c
 
 listyOC.o: listyOC.c
 	$(CC) -c listyOC.c -o listyOC.o $(CFLAGS)
+
+binaryTree.o: binaryTree.c
+	$(CC) -c binaryTree.c -o binaryTree.o $(CFLAGS)
