@@ -92,3 +92,15 @@ void FindElementC(listaC l, int x)
 	
 	system("pause");
 }
+
+void MergeListsC(listaC *l1, listaC *l2)
+{
+	listaC ost1 = (*l1)->pop;
+	listaC ost2 = (*l2)->pop;
+	
+	ost1->nast = (*l2);
+	ost2->nast = (*l1);
+	(*l2)->pop = ost1;
+	(*l1)->pop = ost2;
+}
+

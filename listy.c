@@ -234,27 +234,16 @@ void PrintReversedListRec(lista l)
 	}
 }
 
-int SearchList(lista list, int number, int first)
+lista* SearchList(lista list, int number, int first)
 {
 	lista l = list;
-	int i = 0;
 	while(l)
 	{
 		if(l->klucz == number)
 		{
-			if(first == 0)
-				printf("\nFound %d at index %d", number, i);	
-			if(first == 1)
-				return 1;
+			return l;
 		}
-		l = l->nast; 
-		i++;
-	}
-	
-	if(first == 0)
-	{
-		printf("\n");
-		system("pause");
+		l = &l->nast; 
 	}
 	return 0;
 }

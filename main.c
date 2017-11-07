@@ -9,11 +9,11 @@
 
 int main()
 {
-	lista list = 0;
+	lista list = 0, ostatni = 0;
 	lista list2 = 0;
-	listaC listC = 0;
+	listaC listC = 0, listC2 = 0;
 	
-	listaOC listOC = 0, ostatni = 0;
+	listaOC listOC = 0;
 	listaOC listOC2 = 0, ostatni2 = 0;
 
 	listaNC listNC = 0;
@@ -25,21 +25,11 @@ int main()
 	
 	int i=0;
 	
-	AddElement(&list2, 1);
-	AddElement(&list2, 2);
-	AddElement(&list2, 2);
-	AddElement(&list2, 4);
 	AddElement(&list2, 5);
-	AddElement(&list2, 7);
-	AddElement(&list2, 9);
-	AddElement(&list2, 11);
-	AddElement(&list2, 12);
-	AddElement(&list2, 13);
-	AddElement(&list2, 15);
-	AddElement(&list2, 20);
-	AddElement(&list2, 24);
-	AddElement(&list2, 24);
-	AddElement(&list2, 25);
+	AddElement(&list2, 8);
+	AddElement(&list2, 16);
+	AddElement(&list2, 19);
+
 	SortList(&list2, 0);
 	
 	AddElementOC(&listOC2, &ostatni2, 1);
@@ -49,19 +39,35 @@ int main()
 	AddElementOC(&listOC2, &ostatni2, 9);
 	AddElementOC(&listOC2, &ostatni2, 11);
 	
+	AddElementC(&listC2, 1);
+	AddElementC(&listC2, 3);
+	AddElementC(&listC2, 7);
+	AddElementC(&listC2, 11);
+	AddElementC(&listC2, 15);
+	AddElementC(&listC2, 21);
+	
 	while(exit)
 	{
 		
 		DrawMenu(page, &printType);
 		
 		if(printType == 0)
+		{
 			PrintList(list);
+			PrintList(list2);
+		}
 		else if(printType == 1)
 			PrintListNC(listNC);
 		else if(printType == 2)
+		{
 			PrintListC(listC);
+			PrintListC(listC2);
+		}
 		else if(printType == 3)
+		{
 			PrintListOC(listOC);
+			PrintListOC(listOC2);
+		}
 		else if(printType == 4)
 			PrintBinaryTree(tree);
 					
@@ -108,7 +114,9 @@ int main()
 			case 8:
 				printf("Number: ");
 				scanf("%d", &number);
-				SearchList(list, number, 0);
+				lista x = SearchList(list, number, 0);
+				printf("%d ", x->klucz);
+				system("pause");
 				break;
 			case 9:
 				printf("Index: ");
@@ -190,10 +198,13 @@ int main()
 				scanf("%d", &number);
 				RemoveEveryOther(&listC, number);
 				break;
+			case 36:
+				MergeListsC(&listC, &listC2);
+				break;
 			case 41:
 				printf("Number: ");
 				scanf("%d", &number);
-				AddElementOC(&listOC, &ostatni, number);
+				AddElementOC(&listOC, &ostatni2, number);
 				break;	
 			case 42:
 				RemoveInEach(&listOC, &listOC2);

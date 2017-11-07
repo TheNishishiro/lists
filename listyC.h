@@ -16,5 +16,6 @@ void PrintListC(listaC l);
 void FreeListC(listaC *l);
 void RemoveEveryOther(listaC *l, int jump);
 void RemoveInEachother(listaC *l1, listaC *l2);
+void MergeListsC(listaC *l1, listaC *l2);
   
 #endif
