@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "menu.h"
 #include "listy.h"
 #include "listyC.h"
-#include "menu.h"
+#include "listyPrior.h"
 #include "listyNC.h"
 #include "listyOC.h"
 #include "binaryTree.h"
+#include "ONP.h"
 
 int main()
 {
 	lista list = 0, ostatni = 0;
 	lista list2 = 0;
+	listaPrior listPrior = 0;
 	listaC listC = 0, listC2 = 0;
 	
 	listaOC listOC = 0;
@@ -20,7 +23,7 @@ int main()
 	
 	drzewo tree = 0, *w;
 	
-	int number = 0, options = 0, exit = 1;
+	int number = 0, priority = 0, options = 0, exit = 1;
 	int printType = 0, page = 0;
 	
 	int i=0;
@@ -70,7 +73,8 @@ int main()
 		}
 		else if(printType == 4)
 			PrintBinaryTree(tree);
-					
+		else if(printType == 5)
+			PrintListPrior(listPrior);			
 		printf("\n>");
 		
 			
@@ -154,11 +158,14 @@ int main()
 				FindDifference(&list, &list2);
 				break;
 			case 17:
+				GetMostFrequnet(list);
+				break;
+			case 18:
 				printf("Number: ");
 				scanf("%d", &number);
 				FIFOadd(&list, &ostatni, number);
 				break;
-			case 18:
+			case 19:
 				FIFO(&list);
 				break;
 			case 21:
@@ -239,7 +246,24 @@ int main()
 			case 55:
 				FreeBinaryTree(&tree);
 				break;
-			case 60:
+			case 61:
+				printf("Number: ");
+				scanf("%d", &number);
+				printf("Priority: ");
+				scanf("%d", &priority);
+				AddElementSortedPrior(&listPrior, number, priority);
+				break;
+			case 62:
+				RemoveElementPrior(&listPrior);
+				break;
+			case 63:
+				printf("Index: ");
+				scanf("%d", &number);
+				printf("New priority: ");
+				scanf("%d", &priority);
+				EditPrior(&listPrior, number, priority);
+				break;
+			case 100:
 				exit = 0;
 				break;
 			default:

@@ -21,8 +21,9 @@ void DrawMenu(int page, int *printType)
 		printf("\n14) Add sorted element");
 		printf("\n15) Merge lists");
 		printf("\n16) Find difference between lists");
-		printf("\n17) FIFO add");
-		printf("\n18) FIFO take");
+		printf("\n17) Find most frequent");
+		printf("\n18) FIFO add");
+		printf("\n19) FIFO take");
 		*printType = 0;
 	}
 	else if(page == 1)
@@ -35,7 +36,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 2)
 	{
-		printf("\n31) Add to cyclic list");
+		printf("\n31) Add to cyclic list");	
 		printf("\n32) remove from cyclic list");
 		printf("\n33) Free cyclic list");
 		printf("\n34) find in cyclic list");
@@ -58,9 +59,21 @@ void DrawMenu(int page, int *printType)
 		printf("\n55 Free binary tree");
 		*printType = 4;
 	}
+	else if(page == 5)
+	{
+		printf("\n61 Add to priority list");
+		printf("\n62 Remove highest priority");
+		printf("\n63 Edit priority");
+		*printType = 5;
+	}
+	else if(page == 6)
+	{
+		printf("\n61 Add to ONP");
+		*printType = 6;
+	}
 	
 	printf("\n---------------------------------------------------");
-	printf("\n60) Quit");
+	printf("\n100) Quit");
 	printf("\n-1) previous page | -2) next page\n\n");
 }
 

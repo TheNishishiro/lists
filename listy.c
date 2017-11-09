@@ -17,6 +17,7 @@ void AddElement(lista *l, int i)
 	lista p = (lista)malloc(sizeof(elListy));
 	p->klucz = i;
 	p->nast = *l;
+	p->licznik = 1;
 	*l = p;
 }
 
@@ -105,6 +106,45 @@ void AddElementSortedRec(lista *l, lista p, lista w, lista q, int value)
 		*l = (*l)->nast;
 		AddElementSortedRec(l, p, w, q, value);
 	}
+}
+
+void GetMostFrequnet(lista l)
+{
+	lista w = 0, c = 0;
+	lista p = (lista)malloc(sizeof(elListy));
+	int found = 0, max = 0, value = 0;
+	while(l)
+	{
+		found = 0;
+		while(c)
+		{
+			if(c->klucz == l->klucz)
+			{
+				c->licznik++;
+				found = 1;
+			}
+			c = c->nast;
+		}
+		if(found == 0)
+		{
+			AddElement(&w, l->klucz);
+		}
+		l = l->nast;
+		c = w;
+	}
+	
+	while(w)
+	{
+		if(max < w->licznik)
+		{
+			max = w->licznik;
+			value = w->klucz;
+		}
+		w=w->nast;
+	}
+	
+	printf("Most frequent number in a list is: %d with %d repetitions!\n", value, max);
+	system("pause");
 }
 
 void FreeList(lista *l)

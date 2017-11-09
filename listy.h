@@ -3,6 +3,7 @@
 struct el
 {
 	int klucz;
+	int licznik;
 	struct el *nast;	
 };
 typedef struct el elListy;
@@ -30,6 +31,7 @@ void SortListWartownik(lista *l);
 void RemoveEven(lista *l);
 void MergeLists(lista *l1, lista *l2);
 void FindDifference(lista *l1, lista *l2);
+void GetMostFrequnet(lista l);
 void FIFOadd(lista *l, lista *p, int i);
 void FIFO(lista *l);
 
