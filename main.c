@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "menu.h"
 #include "listy.h"
 #include "listyC.h"
@@ -20,6 +21,7 @@ int main()
 	listaOC listOC2 = 0, ostatni2 = 0;
 
 	listaNC listNC = 0;
+	listaONP listONP = 0;
 	
 	drzewo tree = 0, *w;
 	
@@ -51,7 +53,6 @@ int main()
 	
 	while(exit)
 	{
-		
 		DrawMenu(page, &printType);
 		
 		if(printType == 0)
@@ -74,7 +75,9 @@ int main()
 		else if(printType == 4)
 			PrintBinaryTree(tree);
 		else if(printType == 5)
-			PrintListPrior(listPrior);			
+			PrintListPrior(listPrior);	
+		else if(printType == 6)		
+			PrintListONP(listONP);
 		printf("\n>");
 		
 			
@@ -262,6 +265,12 @@ int main()
 				printf("New priority: ");
 				scanf("%d", &priority);
 				EditPrior(&listPrior, number, priority);
+				break;
+			case 71:
+				CreateONP(&listONP);
+				break;
+			case 72:
+				ExecuteONP(&listONP);
 				break;
 			case 100:
 				exit = 0;
