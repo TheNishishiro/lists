@@ -21,19 +21,20 @@ void PrintBinaryTree(drzewo d)
 	putchar(' ');
 }
 
-void AddToBinaryTree(drzewo *d, int number)
+void AddToBinaryTree(drzewo *d, drzewo *d1, int number)
 {
 	if(*d == 0)
 	{
 		*d = (drzewo)malloc(sizeof(wDrzewaB));
 		(*d)->klucz = number;
 		(*d)->licznik = 1;
+		(*d)->ojciec = *d1;
 		(*d)->lewy = (*d)->prawy = 0;
 	}
 	else if(number < (*d)->klucz)
-		AddToBinaryTree(&(*d)->lewy, number);
+		AddToBinaryTree(&(*d)->lewy, &(*d), number);
 	else if(number > (*d)->klucz)
-		AddToBinaryTree(&(*d)->prawy, number);
+		AddToBinaryTree(&(*d)->prawy, &(*d), number);
 	else
 		(*d)->licznik++;
 }
@@ -100,3 +101,89 @@ void RemoveFromBinaryTree(drzewo *d, int number)
 		*dU = (*dU)->lewy;
 	free(us);
 }
+
+
+drzewo* CompareTreesHelper(drzewo *min2, int k2)
+{
+	int k_old = k2;
+	
+	while(k_old == k2)
+	{
+		if(k2 == 0)
+		{
+			k2 = (*min2)->klucz;
+			printf("%d ", k2, k_old);
+		}
+		else if((*min2)->prawy != 0 && k2 < (*min2)->prawy->klucz)
+		{
+			min2 = FindMinBinaryTree(&(*min2)->prawy);
+			k2 = (*min2)->klucz;
+			printf("%d ", k2, k_old);
+		}
+		else if((*min2)->ojciec != 0)
+		{
+			min2 = &(*min2)->ojciec;
+			if((*min2)->klucz > k2)
+			{
+				k2 = (*min2)->klucz;
+				printf("%d ", k2, k_old);
+			}
+		}
+		else
+			break;
+	}
+	
+	return min2;
+}
+
+void CompareTrees(drzewo d1, drzewo d2)
+{
+	drzewo *min1 = FindMinBinaryTree(&d1);
+	drzewo *min2 = FindMinBinaryTree(&d2);
+	int k = 0, k2 = 0;
+	
+	while(1)
+	{	
+		if(k == 0)
+		{
+			k = (*min1)->klucz;
+			printf("%d ", k);
+			min2 = CompareTreesHelper(min2, k2);
+		}
+		else if((*min1)->prawy != 0 && k < (*min1)->prawy->klucz)
+		{
+			min1 = FindMinBinaryTree(&(*min1)->prawy);
+			k = (*min1)->klucz;
+			printf("%d ", k);
+			min2 = CompareTreesHelper(min2, k2);
+		}
+		else if((*min1)->ojciec != 0)
+		{
+			min1 = &(*min1)->ojciec;
+			if((*min1)->klucz > k)
+			{
+				k = (*min1)->klucz;
+				printf("%d ", k);
+				min2 = CompareTreesHelper(min2, k2);
+			}
+		}
+		else
+			break;
+			
+		k2 = (*min2)->klucz;
+		
+			
+		if(k != k2)
+			break;
+		
+	}
+	min2 = FindMaxBinaryTree(&(*min2));
+	k2 = (*min2)->klucz;
+	
+	if(k == k2)
+		printf("Trees have the same numbers in them\n");
+	else
+		printf("Trees DON'T have the same numbers in them\n");
+	system("pause");
+}
+

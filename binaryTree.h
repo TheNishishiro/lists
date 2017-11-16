@@ -14,7 +14,7 @@ typedef wDrzewaB* drzewo;
 
 void PrintBinaryTree0(drzewo d, int glebokosc);
 void PrintBinaryTree(drzewo d);
-void AddToBinaryTree(drzewo *d, int number);
+void AddToBinaryTree(drzewo *d, drzewo *d1, int number);
 drzewo* FindInBinaryTree(drzewo *d, int number);
 drzewo* FindMaxBinaryTree(drzewo *d);
 drzewo* FindMinBinaryTree(drzewo *d);

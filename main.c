@@ -23,7 +23,7 @@ int main()
 	listaNC listNC = 0;
 	listaONP listONP = 0;
 	
-	drzewo tree = 0, *w;
+	drzewo tree = 0, tree2 = 0, tree3 = 0, *w;
 	
 	int number = 0, priority = 0, options = 0, exit = 1;
 	int printType = 0, page = 0;
@@ -34,7 +34,24 @@ int main()
 	AddElement(&list2, 8);
 	AddElement(&list2, 16);
 	AddElement(&list2, 19);
+	
+	AddToBinaryTree(&tree2, &tree3, 13);
+	AddToBinaryTree(&tree2, &tree3, 8);
+	AddToBinaryTree(&tree2, &tree3, 5);
+	AddToBinaryTree(&tree2, &tree3, 40);
+	AddToBinaryTree(&tree2, &tree3, 35);
+	AddToBinaryTree(&tree2, &tree3, 77);
 
+	
+	
+	AddToBinaryTree(&tree, &tree3, 35);
+	AddToBinaryTree(&tree, &tree3, 5);
+	AddToBinaryTree(&tree, &tree3, 13);
+	AddToBinaryTree(&tree, &tree3, 8);
+	AddToBinaryTree(&tree, &tree3, 77);
+	AddToBinaryTree(&tree, &tree3, 40);
+
+	
 	SortList(&list2, 0);
 	
 	AddElementOC(&listOC2, &ostatni2, 1);
@@ -222,7 +239,7 @@ int main()
 			case 51:
 				printf("Number: ");
 				scanf("%d", &number);
-				AddToBinaryTree(&tree, number);
+				AddToBinaryTree(&tree, &tree, number);
 				break;
 			case 52:
 				printf("Number: ");
@@ -240,14 +257,17 @@ int main()
 			case 54:
 				w = FindMaxBinaryTree(&tree);
 				if(w != 0)
-					printf("Max: %d\n", w);
+					printf("Max: %d[%d]\n", (*w)->klucz, w);
 				w = FindMinBinaryTree(&tree);
 				if(w != 0)
-					printf("Min: %d\n", w);
+					printf("Min: %d[%d]\n", (*w)->klucz, w);
 				system("pause");
 				break;
 			case 55:
 				FreeBinaryTree(&tree);
+				break;
+			case 56:
+				CompareTrees(tree, tree2);
 				break;
 			case 61:
 				printf("Number: ");

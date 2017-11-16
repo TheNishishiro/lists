@@ -57,6 +57,7 @@ void DrawMenu(int page, int *printType)
 		printf("\n53 Search in binary tree");
 		printf("\n54 Find min and max in binary tree");
 		printf("\n55 Free binary tree");
+		printf("\n56 Compare trees");
 		*printType = 4;
 	}
 	else if(page == 5)
