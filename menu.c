@@ -24,53 +24,49 @@ void DrawMenu(int page, int *printType)
 		printf("\n17) Find most frequent");
 		printf("\n18) FIFO add");
 		printf("\n19) FIFO take");
+		printf("\n20) Calculate ONP equation");
 		*printType = 0;
 	}
 	else if(page == 1)
 	{
-		printf("\n21) Add to non-cyclic list");
-		printf("\n22) remove from non-cyclic list");
-		printf("\n23) Free non-cyclic list");
-		printf("\n24) find in non-cyclic list");
+		printf("\n1) Add to non-cyclic list");
+		printf("\n2) remove from non-cyclic list");
+		printf("\n3) Free non-cyclic list");
+		printf("\n4) find in non-cyclic list");
 		*printType = 1;
 	}
 	else if(page == 2)
 	{
-		printf("\n31) Add to cyclic list");	
-		printf("\n32) remove from cyclic list");
-		printf("\n33) Free cyclic list");
-		printf("\n34) find in cyclic list");
-		printf("\n35) Remove every n-element");
-		printf("\n36) Merge cyclic lists");
+		printf("\n1) Add to cyclic list");	
+		printf("\n2) remove from cyclic list");
+		printf("\n3) Free cyclic list");
+		printf("\n4) find in cyclic list");
+		printf("\n5) Remove every n-element");
+		printf("\n6) Merge cyclic lists");
 		*printType = 2;
 	}
 	else if(page == 3)
 	{
-		printf("\n41) Add to oneway cyclic list");
-		printf("\n42) Remove present in other");
+		printf("\n1) Add to oneway cyclic list");
+		printf("\n2) Remove present in other");
 		*printType = 3;
 	}
 	else if(page == 4)
 	{
-		printf("\n51 Add to binary tree");
-		printf("\n52 Remove from binary tree");
-		printf("\n53 Search in binary tree");
-		printf("\n54 Find min and max in binary tree");
-		printf("\n55 Free binary tree");
-		printf("\n56 Compare trees");
+		printf("\n1 Add to binary tree");
+		printf("\n2 Remove from binary tree");
+		printf("\n3 Search in binary tree");
+		printf("\n4 Find min and max in binary tree");
+		printf("\n5 Free binary tree");
+		printf("\n6 Compare trees");
 		*printType = 4;
 	}
 	else if(page == 5)
 	{
-		printf("\n61 Add to priority list");
-		printf("\n62 Remove highest priority");
-		printf("\n63 Edit priority");
+		printf("\n1 Add to priority list");
+		printf("\n2 Remove highest priority");
+		printf("\n3 Edit priority");
 		*printType = 5;
-	}
-	else if(page == 6)
-	{
-		printf("\n71 Create ONP equation");
-		*printType = 6;
 	}
 	
 	printf("\n---------------------------------------------------");

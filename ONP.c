@@ -45,7 +45,7 @@ void CreateONP(listaONP *l)
 			}
 			else
 			{
-				p->liczba = number;
+			//	p->liczba = number;
 			}
 			
 			bufferHelper = 0;
