@@ -183,6 +183,27 @@ void RemoveFirst(lista *l)
 	}
 }
 
+int ReturnFirst(lista *l)
+{
+	if(*l != 0)
+	{
+		return (*l)->klucz;
+	}
+	return 0;
+}
+
+int ListLength(lista *l)
+{
+	int i = 0;
+	lista p = *l;
+	while(p)
+	{
+		i++;
+		p = p->nast;
+	}
+	return i;
+}
+
 void RemoveLast(lista *l)
 {
 	if(*l == 0) 

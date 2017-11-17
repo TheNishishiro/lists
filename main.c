@@ -21,7 +21,7 @@ int main()
 	listaOC listOC2 = 0, ostatni2 = 0;
 
 	listaNC listNC = 0;
-	listaONP listONP = 0;
+//	lista listONP = 0;
 	
 	drzewo tree = 0, tree2 = 0, tree3 = 0, *w;
 	
@@ -95,8 +95,6 @@ int main()
 			PrintBinaryTree(tree);
 		else if(printType == 5)
 			PrintListPrior(listPrior);	
-		else if(printType == 6)		
-			PrintListONP(listONP);
 		printf("\n>");
 		
 			
@@ -195,6 +193,9 @@ int main()
 								break;
 							case 19:
 								FIFO(&list);
+								break;
+							case 20:
+								CreateONP(&list);
 								break;
 						}
 						break;

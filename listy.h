@@ -16,6 +16,8 @@ void AddElementSorted(lista *l, int value);
 void AddElementSortedRec(lista *l, lista p, lista w, lista q, int value);
 void FreeList(lista *l);
 void FreeListRec(lista *l);
+int ReturnFirst(lista *l);
+int ListLength(lista *l);
 void RemoveFirst(lista *l);
 void RemoveLast(lista *l);
 lista ReverseList(lista *l);

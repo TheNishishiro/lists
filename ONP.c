@@ -1,33 +1,23 @@
 #include "ONP.h"
+#include "listy.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-void PrintListONP(listaONP list)
-{
-	printf("ONP: ");
-	listaONP l = list;
-	while (l)
-	{
-		printf ("%d ", l->liczba);
-		l = l->nast; 
-	}
-	printf ("\n"); 
-}
 
-
-void CreateONP(listaONP *l)
+void CreateONP(lista *l)
 {
-	char * line;
-	char * buffer;
+	char line[100];
+	char buffer[10];
 	char indexer;
 	int i = 0, bufferHelper = 0;
-	listaONP end = 0;
 	
 	fseek(stdin,0,SEEK_END);
 	
 	printf("Please enter ONP with spaces as seperator:\n> ");
-	fgets(line, 100, stdin); 
+	
+	fgets(&line, 100, stdin); 
 	indexer = line[i];
+
 	
 	while(indexer){
 		if(line[i] != ' ')
@@ -37,36 +27,69 @@ void CreateONP(listaONP *l)
 		}
 		if(line[i + 1] == ' ' || line[i + 1] == '\n') 
 		{
-			listaONP p = (listaONP)malloc(sizeof(elListyONP));
-			
 			if(buffer[0] == '+' || buffer[0] == '-' || buffer[0] == '*' || buffer[0] == '/')
 			{
-				p->liczba = 0;
+				if(ListLength(l) >= 2)
+				{
+					int result = 0;
+					int num1 = ReturnFirst(l);
+						RemoveFirst(l);
+					int num2 = ReturnFirst(l);
+						RemoveFirst(l);
+					
+					switch(buffer[0])
+					{
+						case '+':
+							result = num1 + num2;
+							break;
+						case '-':
+							result = num1 - num2;
+							break;
+						case '*':
+							result = num1 * num2;
+							break;
+						case '/':
+							result = num1 / num2;
+							break;
+					}
+				
+					AddElement(l, result);
+				}
+				else
+				{
+					printf("Not enough numbers in stack!\n");
+					FreeList(l);
+					system("pause");
+					return;
+				}
 			}
 			else
 			{
-			//	p->liczba = number;
+				int number = atoi(buffer);
+				
+				lista p = (listaONP)malloc(sizeof(elListyONP));
+				
+				AddElement(l, number);
+				
+				while(bufferHelper > 0)
+				{
+					buffer[bufferHelper] = "";
+					bufferHelper--;
+				}
 			}
 			
 			bufferHelper = 0;
-			
-			p->nast = 0;
-			if(*l == 0)
-			{
-				*l = p;
-				end = p;
-			}
-			else
-			{
-				end->nast = p;
-				end = p;
-			}
 		}
-		
 		
 		i++;
 		indexer = line[i];
 	}
-	
+	if(ListLength(l) > 1)
+		printf("Not enough operators!\n");
+	else
+		printf("Result: %d\n", ReturnFirst(l));
+		
+	FreeList(l);
+	system("pause");
 }
 
