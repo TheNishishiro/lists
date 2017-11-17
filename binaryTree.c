@@ -14,6 +14,12 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 	PrintBinaryTree0(d->prawy, glebokosc + 1);
 }
 
+void PrintBinaryTreeIT(drzewo d)
+{
+	int depth = 0;
+	drzewo _d = FindMinBinaryTree(&d);
+}
+
 void PrintBinaryTree(drzewo d)
 {
 	printf("Binary tree:\n");

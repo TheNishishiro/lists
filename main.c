@@ -21,7 +21,6 @@ int main()
 	listaOC listOC2 = 0, ostatni2 = 0;
 
 	listaNC listNC = 0;
-//	lista listONP = 0;
 	
 	drzewo tree = 0, tree2 = 0, tree3 = 0, *w;
 	

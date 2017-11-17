@@ -67,7 +67,7 @@ void CreateONP(lista *l)
 			{
 				int number = atoi(buffer);
 				
-				lista p = (listaONP)malloc(sizeof(elListyONP));
+				lista p = (lista)malloc(sizeof(elListy));
 				
 				AddElement(l, number);
 				
