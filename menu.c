@@ -70,7 +70,6 @@ void DrawMenu(int page, int *printType)
 	else if(page == 6)
 	{
 		printf("\n71 Create ONP equation");
-		printf("\n72 Calculate ONP");
 		*printType = 6;
 	}
 	

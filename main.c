@@ -289,9 +289,6 @@ int main()
 			case 71:
 				CreateONP(&listONP);
 				break;
-			case 72:
-				ExecuteONP(&listONP);
-				break;
 			case 100:
 				exit = 0;
 				break;
