@@ -53,19 +53,23 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 4)
 	{
-		printf("\n1 Add to binary tree");
-		printf("\n2 Remove from binary tree");
-		printf("\n3 Search in binary tree");
-		printf("\n4 Find min and max in binary tree");
-		printf("\n5 Free binary tree");
-		printf("\n6 Compare trees");
+		printf("\n1) Add to binary tree");
+		printf("\n2) Remove from binary tree");
+		printf("\n3) Search in binary tree");
+		printf("\n4) Find min and max in binary tree");
+		printf("\n5) Free binary tree");
+		printf("\n6) Compare trees");
+		printf("\n7) Find min and max in binary tree recursively");
+		printf("\n8) Free binary tree iteratively");
+		printf("\n9) Search in binary tree iteratively");
+		printf("\n10) Add to binary tree iteratively");
 		*printType = 4;
 	}
 	else if(page == 5)
 	{
-		printf("\n1 Add to priority list");
-		printf("\n2 Remove highest priority");
-		printf("\n3 Edit priority");
+		printf("\n1) Add to priority list");
+		printf("\n2) Remove highest priority");
+		printf("\n3) Edit priority");
 		*printType = 5;
 	}
 	

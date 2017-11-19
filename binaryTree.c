@@ -16,8 +16,7 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 
 void PrintBinaryTreeIT(drzewo d)
 {
-	int depth = 0;
-	drzewo _d = FindMinBinaryTree(&d);
+
 }
 
 void PrintBinaryTree(drzewo d)
@@ -27,14 +26,14 @@ void PrintBinaryTree(drzewo d)
 	putchar(' ');
 }
 
-void AddToBinaryTree(drzewo *d, drzewo *d1, int number)
+void AddToBinaryTree(drzewo *d, drzewo *ojciec, int number)
 {
 	if(*d == 0)
 	{
 		*d = (drzewo)malloc(sizeof(wDrzewaB));
 		(*d)->klucz = number;
 		(*d)->licznik = 1;
-		(*d)->ojciec = *d1;
+		(*d)->ojciec = *ojciec;
 		(*d)->lewy = (*d)->prawy = 0;
 	}
 	else if(number < (*d)->klucz)
@@ -43,6 +42,50 @@ void AddToBinaryTree(drzewo *d, drzewo *d1, int number)
 		AddToBinaryTree(&(*d)->prawy, &(*d), number);
 	else
 		(*d)->licznik++;
+}
+
+void AddToBinaryIT(drzewo *d, int number)
+{
+	drzewo p = (drzewo)malloc(sizeof(wDrzewaB));
+	p->klucz = number;
+	p->licznik = 1;
+	p->ojciec = 0;
+	p->lewy = p->prawy = 0;
+	if(*d == 0)
+	{
+		*d = p;
+		return;
+	}
+
+	while(*d)
+	{
+		if(number < (*d)->klucz)
+		{
+			if((*d)->lewy == 0)
+			{
+				p->ojciec = *d;
+				(*d)->lewy = p;
+				break;
+			}
+			else
+				d = &(*d)->lewy;	
+		}
+		else if(number > (*d)->klucz)
+		{
+			if((*d)->prawy == 0)
+			{
+				p->ojciec = *d;
+				(*d)->prawy = p;
+				break;
+			}
+			else
+				d = &(*d)->prawy;
+		}
+		else
+		{
+			(*d)->licznik++;
+		}
+	}
 }
 
 drzewo* FindInBinaryTree(drzewo *d, int number)
@@ -56,12 +99,40 @@ drzewo* FindInBinaryTree(drzewo *d, int number)
 		return d;
 }
 
+drzewo* FindInBinaryTreeIT(drzewo *d, int number)
+{
+	while(*d)
+	{
+		if(number < (*d)->klucz)
+		{
+			d = &(*d)->lewy;	
+		}
+		else if(number > (*d)->klucz)
+		{
+			d = &(*d)->prawy;
+		}
+		else
+			return d;
+	}
+
+	return 0;
+}
+
 drzewo* FindMaxBinaryTree(drzewo *d)
 {
 	if(*d == 0) return 0;
 	while((*d)->prawy)
 		d = &(*d)->prawy;
 	return d;	
+}
+
+drzewo* FindMaxBinaryTreeRec(drzewo *d)
+{
+	if(*d == 0) return 0;
+	if((*d)->prawy != 0) 
+		FindMaxBinaryTreeRec(&(*d)->prawy);
+	else
+		return &(*d);
 }
 
 drzewo* FindMinBinaryTree(drzewo *d)
@@ -72,12 +143,60 @@ drzewo* FindMinBinaryTree(drzewo *d)
 	return d;
 }
 
+drzewo* FindMinBinaryTreeRec(drzewo *d)
+{	
+	if(*d == 0) return 0;
+	if((*d)->lewy != 0) 
+		FindMinBinaryTreeRec(&(*d)->lewy);
+	else
+		return &(*d);	
+}
+
 void FreeBinaryTree(drzewo *d)
 {
 	if(*d == 0) return;
 	FreeBinaryTree(&(*d)->lewy);
 	FreeBinaryTree(&(*d)->prawy);
 	free(*d);
+	*d = 0;
+}
+
+void FreeBinaryTreeIT(drzewo *d)
+{
+	if(*d == 0) return;
+	drzewo *p = FindMinBinaryTreeRec(d);
+	drzewo *rm = 0;
+	
+	while(*p)
+	{
+		if((*p)->prawy != 0)
+		{
+			p = &(*p)->prawy;
+		}
+		if((*p)->lewy != 0)
+		{
+			p = FindMinBinaryTreeRec(&(*p));
+		}
+		if((*p)->prawy == 0)
+		{
+			
+			if( (*p)->ojciec == 0 && (*p)->lewy == 0 && (*p)->prawy == 0)
+			{
+				free(*p);
+				break;	
+			}
+			rm = *p;
+			p = &(*p)->ojciec;
+			
+			if((*p)->lewy != 0){
+				(*p)->lewy = 0;
+			}
+			else if((*p)->prawy != 0){
+				(*p)->prawy = 0;
+			}
+			free(rm);
+		}
+	}
 	*d = 0;
 }
 
@@ -107,7 +226,6 @@ void RemoveFromBinaryTree(drzewo *d, int number)
 		*dU = (*dU)->lewy;
 	free(us);
 }
-
 
 drzewo* CompareTreesHelper(drzewo *min2, int k2)
 {

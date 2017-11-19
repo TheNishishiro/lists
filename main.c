@@ -42,7 +42,6 @@ int main()
 	AddToBinaryTree(&tree2, &tree3, 40);
 	AddToBinaryTree(&tree2, &tree3, 35);
 	AddToBinaryTree(&tree2, &tree3, 77);
-
 	
 	
 	AddToBinaryTree(&tree, &tree3, 35);
@@ -51,7 +50,7 @@ int main()
 	AddToBinaryTree(&tree, &tree3, 8);
 	AddToBinaryTree(&tree, &tree3, 77);
 	AddToBinaryTree(&tree, &tree3, 40);
-
+	AddToBinaryTree(&tree, &tree3, 82);
 	
 	SortList(&list2, 0);
 	
@@ -71,6 +70,7 @@ int main()
 	
 	while(exit)
 	{
+		printf("%d", sizeof(tree));
 		DrawMenu(page, &printType);
 		
 		if(printType == 0)
@@ -92,6 +92,7 @@ int main()
 		}
 		else if(printType == 4)
 			PrintBinaryTree(tree);
+		//	PrintBinaryTreeIT(tree);
 		else if(printType == 5)
 			PrintListPrior(listPrior);	
 		printf("\n>");
@@ -106,6 +107,9 @@ int main()
 				break;
 			case -2:
 				page += 1;
+				break;
+			case 100:
+				exit = 0;
 				break;
 			default:
 				switch(printType)
@@ -267,7 +271,7 @@ int main()
 							case 1:
 								printf("Number: ");
 								scanf("%d", &number);
-								AddToBinaryTree(&tree, &tree, number);
+								AddToBinaryTree(&tree, &tree3, number);
 								break;
 							case 2:
 								printf("Number: ");
@@ -279,7 +283,9 @@ int main()
 								scanf("%d", &number);
 								w = FindInBinaryTree(&tree, number);
 								if(w != 0)
-									printf("%d\n", (*w)->klucz);
+									printf("%d[%d]\n", (*w)->klucz, w);
+								else
+									printf("Not found\n");
 								system("pause");
 								break;
 							case 4:
@@ -296,6 +302,33 @@ int main()
 								break;
 							case 6:
 								CompareTrees(tree, tree2);
+								break;
+							case 7:
+								w = FindMinBinaryTreeRec(&tree);
+								if(w != 0)
+									printf("Min: %d[%d]\n", (*w)->klucz, w);
+								w = FindMaxBinaryTreeRec(&tree);
+								if(w != 0)
+									printf("Max: %d[%d]\n", (*w)->klucz, w);
+								system("pause");
+								break;
+							case 8:
+								FreeBinaryTreeIT(&tree);
+								break;
+							case 9:
+								printf("Number: ");
+								scanf("%d", &number);
+								w = FindInBinaryTreeIT(&tree, number);
+								if(w != 0)
+									printf("%d[%d]\n", (*w)->klucz, w);
+								else
+									printf("Not found\n");
+								system("pause");
+								break;
+							case 10:
+								printf("Number: ");
+								scanf("%d", &number);
+								AddToBinaryIT(&tree, number);
 								break;
 							}
 						break;
