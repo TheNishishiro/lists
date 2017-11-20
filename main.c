@@ -70,7 +70,6 @@ int main()
 	
 	while(exit)
 	{
-		printf("%d", sizeof(tree));
 		DrawMenu(page, &printType);
 		
 		if(printType == 0)

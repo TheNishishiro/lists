@@ -16,7 +16,72 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 
 void PrintBinaryTreeIT(drzewo d)
 {
+	drzewo w = d;
+	int depth = 0;
+	depth = 0;
+	while(w->lewy)
+	{
+		w = w->lewy;
+		depth ++;
+	}
+	w = d;
+	drzewo *min1 = FindMinBinaryTree(&d);
+	int k = 0;
+	int i = 0;
 
+	while(1)
+	{	
+	
+		if(k == 0)
+		{
+			k = (*min1)->klucz;
+			i = 0;
+			while(i < depth)
+			{
+				putchar('*');
+				i += 1;
+			}
+			printf("%d\n", k);
+		}
+		else if((*min1)->prawy != 0 && k < (*min1)->prawy->klucz)
+		{
+			w = &(*min1)->prawy;
+			min1 = FindMinBinaryTree(&(*min1)->prawy);
+			
+			while(w->lewy)
+			{
+				w = w->lewy;
+				depth ++;
+			}	
+			i = 0;
+			while(i < depth)
+			{
+				putchar('*');
+				i += 1;
+			}
+			k = (*min1)->klucz;
+			printf("%d\n", k);
+		}
+		else if((*min1)->ojciec != 0)
+		{
+			min1 = &(*min1)->ojciec;
+			depth--;
+			if((*min1)->klucz > k)
+			{	
+				
+				i = 0;
+				while(i < depth)
+				{
+					putchar('*');
+					i += 1;
+				}
+				k = (*min1)->klucz;
+				printf("%d\n", k);
+			}
+		}
+		else
+			break;
+	}
 }
 
 void PrintBinaryTree(drzewo d)
