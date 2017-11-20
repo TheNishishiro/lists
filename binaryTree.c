@@ -14,81 +14,57 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 	PrintBinaryTree0(d->prawy, glebokosc + 1);
 }
 
-void PrintBinaryTreeIT(drzewo d)
-{
-	drzewo w = d;
-	int depth = 0;
-	depth = 0;
-	while(w->lewy)
-	{
-		w = w->lewy;
-		depth ++;
-	}
-	w = d;
-	drzewo *min1 = FindMinBinaryTree(&d);
-	int k = 0;
-	int i = 0;
-
-	while(1)
-	{	
-	
-		if(k == 0)
-		{
-			k = (*min1)->klucz;
-			i = 0;
-			while(i < depth)
-			{
-				putchar('*');
-				i += 1;
-			}
-			printf("%d\n", k);
-		}
-		else if((*min1)->prawy != 0 && k < (*min1)->prawy->klucz)
-		{
-			w = &(*min1)->prawy;
-			min1 = FindMinBinaryTree(&(*min1)->prawy);
-			
-			while(w->lewy)
-			{
-				w = w->lewy;
-				depth ++;
-			}	
-			i = 0;
-			while(i < depth)
-			{
-				putchar('*');
-				i += 1;
-			}
-			k = (*min1)->klucz;
-			printf("%d\n", k);
-		}
-		else if((*min1)->ojciec != 0)
-		{
-			min1 = &(*min1)->ojciec;
-			depth--;
-			if((*min1)->klucz > k)
-			{	
-				
-				i = 0;
-				while(i < depth)
-				{
-					putchar('*');
-					i += 1;
-				}
-				k = (*min1)->klucz;
-				printf("%d\n", k);
-			}
-		}
-		else
-			break;
-	}
-}
-
 void PrintBinaryTree(drzewo d)
 {
 	printf("Binary tree:\n");
 	PrintBinaryTree0(d, 0);
 	putchar(' ');
+}
+
+int GetTreeDepth0(drzewo d, int glebokosc)
+{
+	int m1 = 0, m2 = 0;
+	if(d == 0) return 0;
+
+	m1 = GetTreeDepth0(d->lewy, glebokosc + 1);
+
+	m2 = GetTreeDepth0(d->prawy, glebokosc + 1);
+	
+	if(m1 < glebokosc)
+		m1 = glebokosc;
+	if(m2 > m1)
+		return m2;
+	else
+		return m1;
+
+}
+
+void GetTreeDepth(drzewo d)
+{
+	printf("Tree depth is: %d\n", GetTreeDepth0(d, 0));
+	system("pause");
+}
+
+int GetTreeLeafs0(drzewo d, int glebokosc)
+{
+	int l1 =0, l2 = 0, leafs = 0;
+	if(d == 0) return 0;
+
+	l1 = GetTreeLeafs0(d->lewy, glebokosc + 1);
+
+	l2 = GetTreeLeafs0(d->prawy, glebokosc + 1);
+	
+	leafs = l1 + l2;
+	if(d->lewy == 0 && d->prawy == 0)
+		return 1;
+	else
+		return leafs;
+}
+
+void GetTreeLeafs(drzewo d)
+{
+	printf("Tree have %d leafs\n", GetTreeLeafs0(d, 0));
+	system("pause");
 }
 
 void AddToBinaryTree(drzewo *d, drzewo *ojciec, int number)

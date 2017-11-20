@@ -329,6 +329,12 @@ int main()
 								scanf("%d", &number);
 								AddToBinaryIT(&tree, number);
 								break;
+							case 11:
+								GetTreeDepth(tree);
+								break;
+							case 12:
+								GetTreeLeafs(tree);
+								break;
 							}
 						break;
 					case 5:
