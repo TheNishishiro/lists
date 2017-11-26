@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o
-LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o
+OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o
+LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o
 LIBS     = -L"D:/Programs/Dev-Cpp/MinGW64/lib" -L"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -50,3 +50,9 @@ listyPrior.o: listyPrior.c
 
 ONP.o: ONP.c
 	$(CC) -c ONP.c -o ONP.o $(CFLAGS)
+
+Sorting.o: Sorting.c
+	$(CC) -c Sorting.c -o Sorting.o $(CFLAGS)
+
+binaryTreeCHAR.o: binaryTreeCHAR.c
+	$(CC) -c binaryTreeCHAR.c -o binaryTreeCHAR.o $(CFLAGS)

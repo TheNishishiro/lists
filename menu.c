@@ -2,9 +2,11 @@
 
 void DrawMenu(int page, int *printType)
 {
+	char line[25] = "========================";
 	printf("Page %d\n", page);
 	if(page == 0)
 	{
+		printf("%s LISTS %s", line, line);
 		printf("\n1) Add at the begining");
 		printf("\n2) Add at the end");
 		printf("\n3) Remove first");
@@ -29,6 +31,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 1)
 	{
+		printf("%s TWO WAYS NON CYCLIC LISTS %s", line, line);
 		printf("\n1) Add to non-cyclic list");
 		printf("\n2) remove from non-cyclic list");
 		printf("\n3) Free non-cyclic list");
@@ -37,6 +40,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 2)
 	{
+		printf("%s CYCLIC LISTS %s", line, line);
 		printf("\n1) Add to cyclic list");	
 		printf("\n2) remove from cyclic list");
 		printf("\n3) Free cyclic list");
@@ -47,12 +51,14 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 3)
 	{
+		printf("%s ONE WAY CYCLIC LISTS %s", line, line);
 		printf("\n1) Add to oneway cyclic list");
 		printf("\n2) Remove present in other");
 		*printType = 3;
 	}
 	else if(page == 4)
 	{
+		printf("%s BINARY TREES %s", line, line);
 		printf("\n1) Add to binary tree");
 		printf("\n2) Remove from binary tree");
 		printf("\n3) Search in binary tree");
@@ -69,10 +75,27 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 5)
 	{
+		printf("%s BINARY TREES CHAR %s", line, line);
+		printf("\n1) Add to tree");
+		printf("\n2) Search in tree");
+		printf("\n3) Find min and max in tree");
+		printf("\n4) Remove from tree");
+		printf("\n5) Free tree");
+		*printType = 5;
+	}
+	else if(page == 6)
+	{
+		printf("%s PRIORITY LISTS %s", line, line);
 		printf("\n1) Add to priority list");
 		printf("\n2) Remove highest priority");
 		printf("\n3) Edit priority");
-		*printType = 5;
+		*printType = 6;
+	}
+	else if(page == 7)
+	{
+		printf("%s SORTING %s", line, line);
+		printf("\n1) ");
+		*printType = 7;
 	}
 	
 	printf("\n---------------------------------------------------");

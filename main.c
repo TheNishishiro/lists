@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "menu.h"
 #include "listy.h"
 #include "listyC.h"
@@ -9,6 +10,9 @@
 #include "listyOC.h"
 #include "binaryTree.h"
 #include "ONP.h"
+#include "Sorting.h"
+#include "binaryTreeCHAR.h"
+
 
 int main()
 {
@@ -23,6 +27,8 @@ int main()
 	listaNC listNC = 0;
 	
 	drzewo tree = 0, tree2 = 0, tree3 = 0, *w;
+	drzewoCHAR treeC = 0, tree2C = 0, tree3C = 0, *wC;
+	char text[2048];
 	
 	int number = 0, priority = 0, exit = 1;
 	int printType = 0, page = 0;
@@ -91,8 +97,9 @@ int main()
 		}
 		else if(printType == 4)
 			PrintBinaryTree(tree);
-		//	PrintBinaryTreeIT(tree);
 		else if(printType == 5)
+			PrintBinaryTreeCHAR(treeC);
+		else if(printType == 6)
 			PrintListPrior(listPrior);	
 		printf("\n>");
 		
@@ -341,6 +348,46 @@ int main()
 						switch(options)
 						{
 							case 1:
+								printf("String: ");
+								scanf("%s", text);
+								AddToBinaryTreeCHAR(&treeC, &tree3C, text);
+								memset(text, 0, sizeof text);
+								break;
+							case 2:
+								printf("String: ");
+								scanf("%s", text);
+								wC = FindInBinaryTreeCHAR(&treeC, text);
+								printf("koniec");
+								if(wC != 0)
+									printf("%s[%d]", (*wC)->klucz, wC);
+								else
+									printf("Not found\n");
+								memset(text, 0, sizeof text);
+								system("pause");
+								break;
+							case 3:
+								wC = FindMaxBinaryTreeCHAR(&treeC);
+								if(wC != 0)
+									printf("Max: %s[%d]\n", (*wC)->klucz, wC);
+								wC = FindMinBinaryTreeCHAR(&treeC);
+								if(wC != 0)
+									printf("Min: %s[%d]\n", (*wC)->klucz, wC);
+								system("pause");
+								break;
+							case 4:
+								printf("String: ");
+								scanf("%s", text);
+								RemoveFromBinaryTreeCHAR(&treeC, text);
+								break;
+							case 5:
+								FreeBinaryTreeCHAR(&treeC);
+								break;
+							}
+						break;
+					case 6:
+						switch(options)
+						{
+							case 1:
 								printf("Number: ");
 								scanf("%d", &number);
 								printf("Priority: ");
@@ -357,6 +404,12 @@ int main()
 								scanf("%d", &priority);
 								EditPrior(&listPrior, number, priority);
 								break;
+							}
+						break;
+					case 7:
+						switch(options)
+						{
+							
 							}
 						break;
 				}

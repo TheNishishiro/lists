@@ -3,7 +3,7 @@
 void PrintBinaryTree0(drzewo d, int glebokosc)
 {
 	if(d == 0) return;
-	PrintBinaryTree0(d->lewy, glebokosc + 1);
+	PrintBinaryTree0(d->prawy, glebokosc + 1);
 	int i = 0;
 	while(i < glebokosc)
 	{
@@ -11,7 +11,8 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 		i += 1;
 	}
 	printf("%d\n", d->klucz);
-	PrintBinaryTree0(d->prawy, glebokosc + 1);
+	PrintBinaryTree0(d->lewy, glebokosc + 1);
+	
 }
 
 void PrintBinaryTree(drzewo d)
