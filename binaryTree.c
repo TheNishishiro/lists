@@ -10,7 +10,7 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 		putchar(' ');
 		i += 1;
 	}
-	printf("%d\n", d->klucz);
+	printf("%d[%d]^%d\n", d->klucz, d, d->ojciec);
 	PrintBinaryTree0(d->lewy, glebokosc + 1);
 	
 }
@@ -263,9 +263,17 @@ void RemoveFromBinaryTree(drzewo *d, int number)
 	}
 	us = *dU;
 	if((*dU)->lewy == 0)
+	{
+		if((*dU)->prawy)
+			(*dU)->prawy->ojciec = (*dU)->ojciec;
 		*dU = (*dU)->prawy;
+	}
 	else
+	{
+		if((*dU)->lewy)
+			(*dU)->lewy->ojciec = (*dU)->ojciec;
 		*dU = (*dU)->lewy;
+	}
 	free(us);
 }
 

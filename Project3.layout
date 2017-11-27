@@ -21,7 +21,7 @@ Open=1
 Top=0
 [Editors]
 Order=4,2,19,20,11,12
-Focused=2
+Focused=12
 [Editor_3]
 CursorCol=17
 CursorRow=4
@@ -72,9 +72,9 @@ CursorRow=4
 TopLine=1
 LeftChar=1
 [Editor_12]
-CursorCol=1
-CursorRow=88
-TopLine=67
+CursorCol=3
+CursorRow=265
+TopLine=256
 LeftChar=1
 [Editor_13]
 CursorCol=3
@@ -114,5 +114,5 @@ LeftChar=1
 [Editor_20]
 CursorCol=3
 CursorRow=102
-TopLine=86
+TopLine=80
 LeftChar=1
