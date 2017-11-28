@@ -94,7 +94,16 @@ void DrawMenu(int page, int *printType)
 	else if(page == 7)
 	{
 		printf("%s SORTING %s", line, line);
-		printf("\n1) ");
+		printf("\n1) Create array of randoms with given length");
+		printf("\n2) Create random array");
+		printf("\n3) Print array");
+		printf("\n4) Insertion Sort");
+		printf("\n5) Selection Sort");
+		printf("\n6) Bubble Sort");
+		printf("\n7) Heap Sort");
+		printf("\n8) Quick Sort");
+		printf("\n9) Shell Sort");
+		printf("\n10) Compare");
 		*printType = 7;
 	}
 	

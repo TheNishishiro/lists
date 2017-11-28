@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
+
 #include "menu.h"
 #include "listy.h"
 #include "listyC.h"
@@ -16,6 +18,8 @@
 
 int main()
 {
+	srand(time(NULL));
+	
 	lista list = 0, ostatni = 0;
 	lista list2 = 0;
 	listaPrior listPrior = 0;
@@ -29,14 +33,14 @@ int main()
 	drzewo tree = 0, tree2 = 0, tree3 = 0, *w;
 	drzewoCHAR treeC = 0, tree2C = 0, tree3C = 0, *wC;
 	char text[2048];
+	int* numbers;
+	int i = 0, sizeOfArray = 0;
 	
 	int number = 0, priority = 0, exit = 1;
 	int printType = 0, page = 0;
 	
 	int options = 0;
-	
-	int i=0;
-	
+
 	AddElement(&list2, 5);
 	AddElement(&list2, 8);
 	AddElement(&list2, 16);
@@ -409,7 +413,63 @@ int main()
 					case 7:
 						switch(options)
 						{
-							
+							case 1:
+								printf("Size of array: ");
+								scanf("%d", &sizeOfArray);
+								numbers = calloc(sizeOfArray, sizeof(int));
+								for(i = 0; i < sizeOfArray; i++)
+								{
+									numbers[i] = rand() % 100;
+								}
+								break;
+							case 2:
+								sizeOfArray = (rand() % 2000) + 9000;
+								printf("Size of array: %d\n", sizeOfArray);
+								numbers = calloc(sizeOfArray, sizeof(int));
+								for(i = 0; i < sizeOfArray; i++)
+								{
+									numbers[i] = rand() % 100;
+								}
+								system("pause");
+								break;
+							case 3:
+								printArray(numbers, sizeOfArray);
+								system("pause");
+								break;
+							case 4:
+								InsertionSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 5:
+								SelectionSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 6:
+								BubbleSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 7:
+								HeapSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 8:
+								Quicksort(numbers, 0, sizeOfArray - 1, 1);
+								system("pause");
+								break;
+							case 9:
+								ShellSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 10:
+								printf("Print sorted arrays? [0/1]\n");
+								scanf("%d", &number);
+								BubbleSort(numbers, sizeOfArray, number);
+								InsertionSort(numbers, sizeOfArray, number);
+								ShellSort(numbers, sizeOfArray, number);
+								Quicksort(numbers, 0, sizeOfArray, number);
+								HeapSort(numbers, sizeOfArray, number);
+								system("pause");
+								break;
 							}
 						break;
 				}
