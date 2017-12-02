@@ -198,14 +198,13 @@ void HeapSort(int input[], int n, int print)
 	PrintStats("Heap Sort", print, A, n);
 }
 
-// Quick sort not working, prints 0 as first element and skips last one
 void Quicksort(int input[], int p, int r, int print)
 {
 	int *A;
 	A = CopyArray(input, r);
 	comparisons = 0, substitution = 0;
 	
-	Quicksort0(A, p, r);
+	Quicksort0(A, p, r - 1);
 	
 	PrintStats("Quick Sort", print, A, r);
 }

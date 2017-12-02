@@ -453,7 +453,7 @@ int main()
 								system("pause");
 								break;
 							case 8:
-								Quicksort(numbers, 0, sizeOfArray - 1, 1);
+								Quicksort(numbers, 0, sizeOfArray, 1);
 								system("pause");
 								break;
 							case 9:
