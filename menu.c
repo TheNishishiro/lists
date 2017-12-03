@@ -106,6 +106,7 @@ void DrawMenu(int page, int *printType)
 		printf("\n8) Quick Sort");
 		printf("\n9) Shell Sort");
 		printf("\n10) Compare");
+		printf("\n11) Heap sort with float numbers");
 		*printType = 7;
 	}
 	

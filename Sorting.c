@@ -1,10 +1,22 @@
 #include "Sorting.h"
 #include <time.h>
+#include <stdlib.h>
 
 #define LEFT(i) (2*i + 1)
 #define RIGHT(i) (2*i + 2)
 
 int comparisons = 0, substitution = 1;
+
+float* float_rand(int size)
+{
+	float *A = malloc(size * sizeof(*A));
+	int i = 0;
+	for(i = 0; i < size; i++)
+	{
+    	A[i] = (float)rand() / ((float)(RAND_MAX) / 200.0f);
+	}	
+    return A;
+}
 
 void printArray(int a[], int n)
 {
@@ -12,6 +24,15 @@ void printArray(int a[], int n)
 	for(i = 0; i < n; i++)
 	{
 		printf("%d ", a[i]);
+	}
+}
+
+void printArrayF(float a[], int n)
+{
+	int i = 0;
+	for(i = 0; i < n; i++)
+	{
+		printf("%f ", a[i]);
 	}
 }
 
@@ -26,12 +47,36 @@ int * CopyArray(int a[], int n)
 	return newArray;
 }
 
+float * CopyArrayF(float a[], int n)
+{
+	float *newArray = calloc(n, sizeof(float));
+	int i;
+	for(i = 0; i < n; i++)
+	{
+		newArray[i] = a[i];
+	}
+	return newArray;
+}
+
 void PrintStats(char *name, int print, int a[], int n)
 {
 	printf("%s: \n", name);
 	if(print)
 	{
 		printArray(a, n);
+		printf("\n");
+	}
+	printf("\tSubstitution: %d\n\tComparisons: %d\n\tActions: %d\n", substitution, comparisons, substitution+comparisons);
+
+	free(a);
+}
+
+void PrintStatsF(char *name, int print, float a[], int n)
+{
+	printf("%s: \n", name);
+	if(print)
+	{
+		printArrayF(a, n);
 		printf("\n");
 	}
 	printf("\tSubstitution: %d\n\tComparisons: %d\n\tActions: %d\n", substitution, comparisons, substitution+comparisons);
@@ -197,6 +242,75 @@ void HeapSort(int input[], int n, int print)
 	
 	PrintStats("Heap Sort", print, A, n);
 }
+
+
+void HeapifyF(float A[], int i, int heapSize)
+{
+	int l, r, largest;
+	float x;
+	l = LEFT(i);
+	r = RIGHT(i);
+	substitution += 2;
+	comparisons++;
+	if(l < heapSize && A[l] > A[i])
+	{
+		largest = l;	
+	}
+	else
+	{
+		largest = i;	
+	}
+	substitution++;
+	comparisons++;
+	if(r < heapSize && A[r] > A[largest])
+	{
+		largest = r;
+		substitution++;
+	}
+	comparisons++;
+	if(largest != i)
+	{
+		x = A[i];
+		A[i] = A[largest];
+		A[largest] = x;
+		substitution += 3;
+		HeapifyF(A, largest, heapSize);	
+	}
+
+}
+
+void BuildHeapF(float A[], int n)
+{
+	int i;
+	substitution++;
+	for(i = (n - 1) / 2; i >= 0; i--)
+	{
+		HeapifyF(A, i, n);
+		
+		comparisons++;
+		substitution++;
+	}
+}
+
+void HeapSortF(float input[], int n, int print)
+{
+	int i, heapSize = n;
+	float x;
+	float *A;
+	A = CopyArrayF(input, n);
+	comparisons = 0, substitution = 1;
+	BuildHeapF(A, n);
+	for(i = n - 1; i > 0; i--)
+	{
+		x = A[0];
+		A[0] = A[i];
+		A[i] = x;
+		HeapifyF(A, 0, --heapSize);	
+	}
+	
+	PrintStatsF("Heap Sort", print, A, n);
+}
+
 
 void Quicksort(int input[], int p, int r, int print)
 {

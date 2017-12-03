@@ -34,6 +34,7 @@ int main()
 	drzewoCHAR treeC = 0, tree2C = 0, tree3C = 0, *wC;
 	char text[2048];
 	int* numbers;
+	float* numbersF;
 	int i = 0, sizeOfArray = 0;
 	
 	int number = 0, priority = 0, exit = 1;
@@ -480,6 +481,15 @@ int main()
 								ShellSort(numbers, sizeOfArray, number);
 								Quicksort(numbers, 0, sizeOfArray, number);
 								HeapSort(numbers, sizeOfArray, number);
+								system("pause");
+								break;
+							case 11:
+								printf("Size of array: ");
+								scanf("%d", &sizeOfArray);
+								numbersF = float_rand(sizeOfArray);
+								printArrayF(numbersF, sizeOfArray);
+								printf("\n");
+								HeapSortF(numbersF, sizeOfArray, 1);
 								system("pause");
 								break;
 							}
