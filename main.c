@@ -346,6 +346,18 @@ int main()
 							case 12:
 								GetTreeLeafs(tree);
 								break;
+							case 13:
+								printf("Number: ");
+								scanf("%d", &number);
+								AddToBinaryTreeWithoutOrder(&tree, &tree3, number, 'l');
+								break;
+							case 14:
+								if(TestSymmetry(tree->lewy, tree->prawy) == 1)
+									printf("\nTree ISN'T symmetrical\n");
+								else
+									printf("\nTree IS symmetrical\n");
+								system("pause");
+								break;
 							}
 						break;
 					case 5:

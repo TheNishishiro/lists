@@ -77,6 +77,7 @@ void FreeBinaryTreeCHAR(drzewoCHAR *d)
 	if(*d == 0) return;
 	FreeBinaryTreeCHAR(&(*d)->lewy);
 	FreeBinaryTreeCHAR(&(*d)->prawy);
+	free((*d)->klucz);
 	free(*d);
 	*d = 0;
 }
@@ -105,5 +106,6 @@ void RemoveFromBinaryTreeCHAR(drzewoCHAR *d, char* text)
 		*dU = (*dU)->prawy;
 	else
 		*dU = (*dU)->lewy;
+	free(us->klucz);
 	free(us);
 }

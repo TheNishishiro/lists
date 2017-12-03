@@ -1,4 +1,6 @@
 #include "binaryTree.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void PrintBinaryTree0(drzewo d, int glebokosc)
 {
@@ -10,7 +12,7 @@ void PrintBinaryTree0(drzewo d, int glebokosc)
 		putchar(' ');
 		i += 1;
 	}
-	printf("%d[%d]^%d\n", d->klucz, d, d->ojciec);
+	printf("%d\n", d->klucz);
 	PrintBinaryTree0(d->lewy, glebokosc + 1);
 	
 }
@@ -84,6 +86,47 @@ void AddToBinaryTree(drzewo *d, drzewo *ojciec, int number)
 		AddToBinaryTree(&(*d)->prawy, &(*d), number);
 	else
 		(*d)->licznik++;
+}
+
+void AddToBinaryTreeWithoutOrder(drzewo *d, drzewo *ojciec, int number, char side)
+{
+	if(*d == 0)
+	{
+		*d = (drzewo)malloc(sizeof(wDrzewaB));
+		(*d)->klucz = number;
+		(*d)->licznik = 1;
+		(*d)->ojciec = *ojciec;
+		(*d)->lewy = (*d)->prawy = 0;
+		return;
+	}
+
+	PrintBinaryTree(*d);
+	printf("Side? [l/r]");
+	fseek(stdin,0,SEEK_END);
+	scanf("%c", &side);
+	
+	if(side == 'l')
+		AddToBinaryTreeWithoutOrder(&(*d)->lewy, &(*d), number, side);
+	else if(side == 'r')
+		AddToBinaryTreeWithoutOrder(&(*d)->prawy, &(*d), number, side);
+}
+
+int TestSymmetry(drzewo d1, drzewo d2)
+{
+	int n = 0;
+	if(d1 == 0 && d2 == 0) return;
+	else if(d1 == 0 && d2 != 0) return 1;
+	else if(d1 != 0 && d2 == 0) return 1;
+
+	printf("%d %d\n", d1->klucz, d2->klucz);
+	if(d1->klucz != d2->klucz)
+		return 1;
+	
+	n = TestSymmetry(d1->lewy, d2->prawy);
+	if(n == 0)
+		n = TestSymmetry(d1->prawy, d2->lewy);
+	
+	return n;
 }
 
 void AddToBinaryIT(drzewo *d, int number)

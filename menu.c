@@ -71,6 +71,8 @@ void DrawMenu(int page, int *printType)
 		printf("\n10) Add to binary tree iteratively");
 		printf("\n11) Find depth of a binary tree");
 		printf("\n12) Count leafs");
+		printf("\n13) Add to tree without order");
+		printf("\n14) Test symmetry");
 		*printType = 4;
 	}
 	else if(page == 5)
