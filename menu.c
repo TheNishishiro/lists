@@ -16,17 +16,22 @@ void DrawMenu(int page, int *printType)
 		printf("\n7) Reverse List");
 		printf("\n8) Search for");
 		printf("\n9) Remove by index");
-		printf("\n10) Remove all with specific value");
-		printf("\n11) Reverse connections");
+		printf("\n10) Remove all with specific value rec");
+		printf("\n11) Reverse connections rec");
 		printf("\n12) Sort list");
 		printf("\n13) Remove all even numbers");
-		printf("\n14) Add sorted element");
+		printf("\n14) Add sorted element rec");
 		printf("\n15) Merge lists");
 		printf("\n16) Find difference between lists");
 		printf("\n17) Find most frequent");
 		printf("\n18) FIFO add");
 		printf("\n19) FIFO take");
 		printf("\n20) Calculate ONP equation");
+		printf("\n21) Reverse connections rec");
+		printf("\n22) Free list rec");
+		printf("\n23) Remove all with specific value");
+		printf("\n24) Reverse connections");
+		printf("\n25) Add element sorted");
 		*printType = 0;
 	}
 	else if(page == 1)

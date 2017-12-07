@@ -192,6 +192,16 @@ int ReturnFirst(lista *l)
 	return 0;
 }
 
+void RevRec(lista *l, lista *p)
+{
+	if((*l) == 0) return;
+	lista c = (*l)->nast;
+	*p = *l;
+	(*l)->nast = 0;
+	RevRec(&c, *p);
+	(*l)->nast = *p;	
+}
+
 int ListLength(lista *l)
 {
 	int i = 0;

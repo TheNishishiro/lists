@@ -145,7 +145,6 @@ int main()
 								RemoveLast(&list);
 								break;
 							case 5:
-								//FreeList(&list);
 								FreeListRec(&list);
 								break;
 							case 6:
@@ -171,11 +170,10 @@ int main()
 								printf("Number: ");
 								scanf("%d", &number);
 								RemoveAllOfRec(&list, number);
-								//RemoveAllOf(&list, number);
+								RemoveAllOf(&list, number);
 								break;
 							case 11:
 								ReverseConnectionsRec(&list, 0, 0);
-								//ReverseConnections(&list);
 								break;
 							case 12:
 								printf("Sortowanie z wartownikiem czy bez? [0/1]\n>");
@@ -188,7 +186,6 @@ int main()
 							case 14:
 								printf("Number: ");
 								scanf("%d", &number);
-							//	AddElementSorted(&list, number);
 								AddElementSortedRec(&list, 0, 0, 0, number);
 								break;
 							case 15:
@@ -210,6 +207,26 @@ int main()
 								break;
 							case 20:
 								CreateONP(&list);
+								break;
+							case 21:
+								RevRec(&list, &list);
+								PrintList(list);
+								break;
+							case 22:
+								FreeList(&list);
+								break;
+							case 23:
+								printf("Number: ");
+								scanf("%d", &number);
+								RemoveAllOf(&list, number);
+								break;
+							case 24:
+								ReverseConnections(&list);								
+								break;
+							case 25:
+								printf("Number: ");
+								scanf("%d", &number);
+								AddElementSorted(&list, number);
 								break;
 						}
 						break;
