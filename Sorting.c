@@ -118,7 +118,6 @@ void InsertionSort(int input[], int n, int print)
 	PrintStats("Insertion Sort", print, a, n);
 }
 
-// This is not even close to working (?)
 void SelectionSort(int input[], int n, int print)
 {
 	int i, j, k, x;
