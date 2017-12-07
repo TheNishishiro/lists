@@ -192,14 +192,17 @@ int ReturnFirst(lista *l)
 	return 0;
 }
 
-void RevRec(lista *l, lista *p)
+lista RevRec(lista l, lista prop)
 {
-	if((*l) == 0) return;
-	lista c = (*l)->nast;
-	*p = *l;
-	(*l)->nast = 0;
-	RevRec(&c, *p);
-	(*l)->nast = *p;	
+	if (l == 0) return 0;
+	if (l->nast == 0)
+	{
+		l->nast = prop;
+		return l;
+	}
+	lista tail = l->nast;
+	l->nast = prop;
+	return RevRec(tail, l);
 }
 
 int ListLength(lista *l)

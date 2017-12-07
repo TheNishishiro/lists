@@ -209,7 +209,7 @@ int main()
 								CreateONP(&list);
 								break;
 							case 21:
-								RevRec(&list, &list);
+								list = RevRec(list, 0);
 								PrintList(list);
 								break;
 							case 22:
