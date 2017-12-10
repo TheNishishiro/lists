@@ -10,7 +10,7 @@ void CreateONP(lista *l)
 	char buffer[10];
 	char indexer;
 	int i = 0, bufferHelper = 0;
-	
+	lista buf;
 	fseek(stdin,0,SEEK_END);
 	
 	printf("Please enter ONP with spaces as seperator:\n> ");
@@ -32,11 +32,10 @@ void CreateONP(lista *l)
 				if(ListLength(l) >= 2)
 				{
 					int result = 0;
-					int num1 = ReturnFirst(l);
+					int num1 = &(*ReturnFirst(l))->klucz;
 						RemoveFirst(l);
-					int num2 = ReturnFirst(l);
+					int num2 = &(*ReturnFirst(l))->klucz;
 						RemoveFirst(l);
-					
 					switch(buffer[0])
 					{
 						case '+':
@@ -65,15 +64,22 @@ void CreateONP(lista *l)
 			}
 			else
 			{
-				int number = atoi(buffer);
-				
-				lista p = (lista)malloc(sizeof(elListy));
-				
-				AddElement(l, number);
+				if(buffer[0] != 'n')
+				{
+					int number = atoi(buffer);
+					lista p = (lista)malloc(sizeof(elListy));
+					AddElement(l, number);
+				}
+				else
+				{
+					buf = ReturnFirst(l);
+					buf->klucz *= -1;
+				}
 				
 				while(bufferHelper > 0)
 				{
-					buffer[bufferHelper] = "";
+					buffer[bufferHelper] = 0;
+
 					bufferHelper--;
 				}
 			}
@@ -87,7 +93,7 @@ void CreateONP(lista *l)
 	if(ListLength(l) > 1)
 		printf("Not enough operators!\n");
 	else
-		printf("Result: %d\n", ReturnFirst(l));
+		printf("Result: %d\n", &(*ReturnFirst(l))->klucz);
 		
 	FreeList(l);
 	system("pause");

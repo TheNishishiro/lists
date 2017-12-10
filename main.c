@@ -78,7 +78,7 @@ int main()
 	AddElementC(&listC2, 11);
 	AddElementC(&listC2, 15);
 	AddElementC(&listC2, 21);
-	
+
 	while(exit)
 	{
 		DrawMenu(page, &printType);
@@ -107,7 +107,8 @@ int main()
 		else if(printType == 6)
 			PrintListPrior(listPrior);	
 		printf("\n>");
-		
+		lista buf;
+		int num = 0;
 			
 		scanf("%d", &options);
 		switch(options)
@@ -158,7 +159,10 @@ int main()
 								printf("Number: ");
 								scanf("%d", &number);
 								lista x = SearchList(list, number, 0);
-								printf("%d ", x->klucz);
+								if(x != 0)
+									printf("%d \n", x->klucz);
+								else
+									printf("not found\n");
 								system("pause");
 								break;
 							case 9:
@@ -186,7 +190,7 @@ int main()
 							case 14:
 								printf("Number: ");
 								scanf("%d", &number);
-								AddElementSortedRec(&list, 0, 0, 0, number);
+								AddElementSortedRec(&list, number);
 								break;
 							case 15:
 								MergeLists(&list, &list2);
@@ -370,10 +374,15 @@ int main()
 								AddToBinaryTreeWithoutOrder(&tree, &tree3, number, 'l');
 								break;
 							case 14:
-								if(TestSymmetry(tree->lewy, tree->prawy) == 1)
-									printf("\nTree ISN'T symmetrical\n");
+								if(tree != 0)
+								{
+									if(TestSymmetry(tree->lewy, tree->prawy) == 1)
+										printf("\nTree ISN'T symmetrical\n");
+									else
+										printf("\nTree IS symmetrical\n");
+								}
 								else
-									printf("\nTree IS symmetrical\n");
+									printf("Tree is empty\n");
 								system("pause");
 								break;
 							}
@@ -391,7 +400,6 @@ int main()
 								printf("String: ");
 								scanf("%s", text);
 								wC = FindInBinaryTreeCHAR(&treeC, text);
-								printf("koniec");
 								if(wC != 0)
 									printf("%s[%d]", (*wC)->klucz, wC);
 								else

@@ -52,64 +52,23 @@ void AddFirst(lista *l, lista *p, lista *w, int value)
 
 void AddElementSorted(lista *l, int value)
 {
-	lista p = 0, w = *l, q = *l;
-	if(*l == 0)
-	{
-		AddElement(l, value);
-		return;
-	}
-	while(1)
-	{
-		if((*l == 0 || (*l)->klucz >= value) && w != *l)
-		{
-			AddInTheMiddle(l, &p, &w, &q, value);
-			return;
-		}
-		else if(w == *l && (*l)->klucz >= value)
-		{
-			AddFirst(l, &p, &w, value);
-			return;
-		}
-		else
-		{
-			w = *l;
-			*l = (*l)->nast;
-		}
-	}
+	while(*l && value > (*l)->klucz)
+		l = &(*l)->nast;
+	AddElement(l, value);
 }
 
-void AddElementSortedRec(lista *l, lista p, lista w, lista q, int value)
+void AddElementSortedRec(lista *l, int value)
 {
-	if(q == 0)
-	{
-		w = *l;
-		q = *l;
-		if(*l == 0)
-		{
-			AddElement(l, value);
-			return;
-		}
-	}		
-	if((*l == 0 || (*l)->klucz >= value) && w != *l)
-	{
-		AddInTheMiddle(l, &p, &w, &q, value);
-		return;
-	}
-	else if(w == *l && (*l)->klucz >= value)
-	{
-		AddFirst(l, &p, &w, value);
-		return;
-	}
+	if(*l == 0 || (*l)->klucz >= value)
+		AddElement(l, value);
 	else
-	{
-		w = *l;
-		*l = (*l)->nast;
-		AddElementSortedRec(l, p, w, q, value);
-	}
+		AddElementSortedRec(&(*l)->nast, value);
 }
 
 void GetMostFrequnet(lista l)
 {
+	if(l != 0)
+	{
 	lista w = 0, c = 0;
 	lista p = (lista)malloc(sizeof(elListy));
 	int found = 0, max = 0, value = 0;
@@ -143,7 +102,10 @@ void GetMostFrequnet(lista l)
 		w=w->nast;
 	}
 	
-	printf("Most frequent number in a list is: %d with %d repetitions!\n", value, max);
+		printf("Most frequent number in a list is: %d with %d repetitions!\n", value, max);
+	}
+	else
+		printf("List empty!\n");
 	system("pause");
 }
 
@@ -162,13 +124,9 @@ void FreeListRec(lista *l)
 {
 	if(*l != 0)
 	{
-		lista p = *l;
-		if(p != 0)
-		{
-			*l = (*l)->nast;
-			free(p);
-			FreeListRec(l);
-		}
+		FreeListRec(&(*l)->nast);
+		free(*l);
+		*l = 0;
 	}
 }
 
@@ -183,11 +141,11 @@ void RemoveFirst(lista *l)
 	}
 }
 
-int ReturnFirst(lista *l)
+lista* ReturnFirst(lista *l)
 {
 	if(*l != 0)
 	{
-		return (*l)->klucz;
+		return *l;
 	}
 	return 0;
 }
@@ -369,6 +327,7 @@ int SortWhileHelper(lista *l, lista *p, int changes)
 
 void SortList(lista *l, int Wartownik)
 {
+	if(*l == 0) return; 
 		if(Wartownik != 0)
 			AddElementAtEnd(l, -1);
 		

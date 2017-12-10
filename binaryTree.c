@@ -355,6 +355,11 @@ drzewo* CompareTreesHelper(drzewo *min2, int k2)
 
 void CompareTrees(drzewo d1, drzewo d2)
 {
+	if(d1 == 0 || d2 == 0) {
+		printf("One of trees is empty\n");
+		system("pause");
+		return;	
+	}
 	drzewo *min1 = FindMinBinaryTree(&d1);
 	drzewo *min2 = FindMinBinaryTree(&d2);
 	int k = 0, k2 = 0;

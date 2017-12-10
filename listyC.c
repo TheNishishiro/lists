@@ -57,6 +57,7 @@ void RemoveElementC(listaC *l)
 
 void RemoveEveryOther(listaC *l, int jump)
 {
+	if(*l == 0) return;
 	int i = 0;
 	listaC p = 0;
 	while((*l)->pop != *l && (*l)->nast != *l)
@@ -80,6 +81,7 @@ void FreeListC(listaC *l)
 
 void FindElementC(listaC l, int x)
 {
+	if(l == 0) return;
 	listaC p = l;
 	int i = 0;
 	do
@@ -95,6 +97,12 @@ void FindElementC(listaC l, int x)
 
 void MergeListsC(listaC *l1, listaC *l2)
 {
+	if(*l2 == 0) return;
+	else if(*l1 == 0)
+	{
+		*l1 = *l2;
+		return;	
+	}
 	listaC ost1 = (*l1)->pop;
 	listaC ost2 = (*l2)->pop;
 	
