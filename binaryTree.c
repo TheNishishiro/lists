@@ -48,6 +48,19 @@ void GetTreeDepth(drzewo d)
 	system("pause");
 }
 
+drzewo * GetNext(drzewo t)
+{
+	if(t == 0)	return 0;
+	if(t->prawy != 0) return FindMinBinaryTree(&(t)->prawy);
+	drzewo last = t;
+	do
+	{
+		last = t;
+		t = t->ojciec;
+	}while( t != 0 && t->prawy == last);
+	return t;
+}
+
 int GetTreeLeafs0(drzewo d, int glebokosc)
 {
 	int l1 =0, l2 = 0, leafs = 0;
