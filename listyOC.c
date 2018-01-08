@@ -44,7 +44,6 @@ void RemoveFirstOC(listaOC *l)
 	}
 }
 
-// Fix this crap 
 void RemoveInEach(listaOC *l1, listaOC *l2)
 {
 	if(*l1 == 0 || *l2 == 0) return;

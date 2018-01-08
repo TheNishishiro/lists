@@ -6,7 +6,7 @@ void DrawMenu(int page, int *printType)
 	printf("Page %d\n", page);
 	if(page == 0)
 	{
-		printf("%s LISTS %s", line, line);
+		printf("%s SINGLY LINKED LIST %s", line, line);
 		printf("\n1) Add at the begining");
 		printf("\n2) Add at the end");
 		printf("\n3) Remove first");
@@ -36,7 +36,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 1)
 	{
-		printf("%s TWO WAYS NON CYCLIC LISTS %s", line, line);
+		printf("%s DOUBLY LINKED LIST %s", line, line);
 		printf("\n1) Add to non-cyclic list");
 		printf("\n2) remove from non-cyclic list");
 		printf("\n3) Free non-cyclic list");
@@ -45,7 +45,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 2)
 	{
-		printf("%s CYCLIC LISTS %s", line, line);
+		printf("%s CIRCULAR DOUBLY LINKED LIST %s", line, line);
 		printf("\n1) Add to cyclic list");	
 		printf("\n2) remove from cyclic list");
 		printf("\n3) Free cyclic list");
@@ -56,7 +56,7 @@ void DrawMenu(int page, int *printType)
 	}
 	else if(page == 3)
 	{
-		printf("%s ONE WAY CYCLIC LISTS %s", line, line);
+		printf("%s CIRCULAR LINKED LIST %s", line, line);
 		printf("\n1) Add to oneway cyclic list");
 		printf("\n2) Remove present in other");
 		*printType = 3;
@@ -113,6 +113,17 @@ void DrawMenu(int page, int *printType)
 		printf("\n10) Compare");
 		printf("\n11) Heap sort with float numbers");
 		*printType = 7;
+	}
+	else if(page == 8)
+	{
+		printf("%s GRAPHS %s", line, line);
+		printf("\n1) Create neighbor array");
+		printf("\n2) Create list array");
+		printf("\n3) Print neighbor array");
+		printf("\n4) Print list array");
+		printf("\n5) Convert list to array");
+		printf("\n6) Reverse list graph");
+		*printType = 8;
 	}
 	
 	printf("\n---------------------------------------------------");

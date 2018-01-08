@@ -14,7 +14,7 @@
 #include "ONP.h"
 #include "Sorting.h"
 #include "binaryTreeCHAR.h"
-
+#include "graphs.h"
 
 int main()
 {
@@ -41,6 +41,10 @@ int main()
 	int printType = 0, page = 0;
 	
 	int options = 0;
+	
+	int* NeighborArray;
+	int graphPoints = 0; 
+	lista* ListArray;
 
 	AddElement(&list2, 5);
 	AddElement(&list2, 8);
@@ -61,7 +65,7 @@ int main()
 	AddToBinaryTree(&tree, &tree3, 8);
 	AddToBinaryTree(&tree, &tree3, 77);
 	AddToBinaryTree(&tree, &tree3, 40);
-	AddToBinaryTree(&tree, &tree3, 82);
+//	AddToBinaryTree(&tree, &tree3, 82);
 	
 	SortList(&list2, 0);
 	
@@ -193,6 +197,7 @@ int main()
 								AddElementSortedRec(&list, number);
 								break;
 							case 15:
+								//mergeLists2(&list, &list2);
 								MergeLists(&list, &list2);
 								break;
 							case 16:
@@ -386,7 +391,7 @@ int main()
 								system("pause");
 								break;
 							}
-						break;
+							break;
 					case 5:
 						switch(options)
 						{
@@ -425,7 +430,7 @@ int main()
 								FreeBinaryTreeCHAR(&treeC);
 								break;
 							}
-						break;
+							break;
 					case 6:
 						switch(options)
 						{
@@ -447,7 +452,7 @@ int main()
 								EditPrior(&listPrior, number, priority);
 								break;
 							}
-						break;
+							break;
 					case 7:
 						switch(options)
 						{
@@ -518,6 +523,36 @@ int main()
 								system("pause");
 								break;
 							}
+							break;
+					case 8:
+						switch(options)
+						{
+							case 1:
+								printf("Insert number of points:\n");
+								scanf("%d", &graphPoints);
+								NeighborArray = CreateGraphArray(graphPoints);
+								break;
+							case 2:	
+								printf("Insert number of points:\n");
+								scanf("%d", &graphPoints);
+								ListArray = CreateGraphList(graphPoints);
+								break;
+							case 3:	
+								PrintGraphArray(NeighborArray, graphPoints);
+								system("pause");
+								break;
+							case 4:	
+								PrintGraphList(ListArray, graphPoints);
+								system("pause");
+								break;
+							case 5:	
+								NeighborArray = ConvertGraphListToArray(ListArray, graphPoints);
+								break;
+							case 6:	
+								ListArray = CreateGraphReversed(ListArray, graphPoints);
+								system("pause");
+								break;
+						}
 						break;
 				}
 		}
