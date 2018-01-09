@@ -266,7 +266,7 @@ void PrintReversedListRec(lista l)
 	}
 }
 
-lista* SearchList(lista list, int number, int first)
+lista* SearchList(lista list, int number)
 {
 	lista l = list;
 	while(l)
@@ -275,7 +275,7 @@ lista* SearchList(lista list, int number, int first)
 		{
 			return l;
 		}
-		l = &l->nast; 
+		l = l->nast; 
 	}
 	return 0;
 }
@@ -396,32 +396,26 @@ void MergeLists(lista *l1, lista *l2)
 			p = *l1;
 			q = *l2;	
 		}
-		while(*l2)
+		while(w && p)
 		{
-			if(element == 0 && w->nast == 0)
+			if(p)
 			{
+				while(w->nast != 0 && p != 0 && w->nast->klucz < p->klucz){
+					w = w->nast;
+				}
+				*l2 = w->nast;
 				w->nast = p;
-				break;
+				w = *l2;
 			}
-			else if(element == 0 && p->nast == 0)
+			if(w)
 			{
-
-				break;
+				while(p->nast != 0 && p->nast->klucz < w->klucz){
+					p = p->nast;
+				}
+				*l1 = p->nast;
+				p->nast = w;
+				p = *l1;
 			}
-			else if(p == 0 || (*l2)->klucz < p->klucz || (*l2)->klucz <= (*l1)->klucz)
-			{
-				w = (*l1)->nast;
-				p = (*l2)->nast;
-				(*l1)->nast = *l2;
-				*l1 = *l2;
-				*l2 = w;
-			}
-			else
-			{
-				*l1 = (*l1)->nast;
-				p = (*l1)->nast;
-			}
-			element = 1;
 		}
 		*l1 = q;
 	}
@@ -464,7 +458,7 @@ void FindDifference(lista *l1, lista *l2)
 	
 	while(*l2)
 	{
-		if(SearchList(head_l1, (*l2)->klucz, 1) == 0)
+		if(SearchList(head_l1, (*l2)->klucz) == 0)
 		{
 			AddElementAtEnd(&l1_missing, (*l2)->klucz);
 		}
@@ -475,7 +469,7 @@ void FindDifference(lista *l1, lista *l2)
 
 	while(*l1)
 	{
-		if(SearchList(head_l2, (*l1)->klucz, 1) == 0)
+		if(SearchList(head_l2, (*l1)->klucz) == 0)
 		{
 			AddElementAtEnd(&l2_missing, (*l1)->klucz);
 		}

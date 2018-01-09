@@ -17,22 +17,52 @@ void PrintListNC(listaNC l)
 void AddElementNC(listaNC *l, int i)
 {
 	listaNC p = 0, n = 0;
-	p = (listaNC)malloc(sizeof(elListyNC));
-	p->klucz = i;
+	
 	if(*l == 0)
 	{
+		p = (listaNC)malloc(sizeof(elListyNC));
+		p->klucz = i;
 		*l = p;
 		p->nast = 0;
 		p->pop = 0;
 	}
 	else
 	{
-		(*l)->pop = p;
-		p->pop = 0;
-		p->nast = *l;
-		*l = p;
+		if((*l)->klucz <= i)
+		{
+			while((*l)->nast && i > (*l)->nast->klucz)
+				l = &(*l)->nast;
+			AddElementNCSorted(l, i);
+		}
+		else
+		{
+			p = (listaNC)malloc(sizeof(elListyNC));
+			p->klucz = i;
+			p->pop = (*l)->pop;
+			p->nast = *l;
+			(*l)->pop = p;
+			*l = p;
+		}
 	}
+	
 }
+
+void AddElementNCSorted(listaNC *l, int i)
+{
+	listaNC p = 0, n = 0;
+	p = (listaNC)malloc(sizeof(elListyNC));
+	p->klucz = i;
+	
+	p->nast = (*l)->nast;	
+	(*l)->nast = p;
+	p->pop = *l;
+	if(p->nast != 0)
+		p->nast->pop = p;
+	
+	
+//	*l = p;
+}
+
 
 void RemoveElementNC(listaNC *l)
 {

@@ -17,23 +17,51 @@ void PrintListC(listaC l)
 
 void AddElementC(listaC *l, int i)
 {
-	listaC p = 0, n = 0;
-	p = (listaC)malloc(sizeof(elListyC));
-	p->klucz = i;
+	listaC p = 0;
+	
 	if(*l == 0)
 	{
+		p = (listaC)malloc(sizeof(elListyC));
+		p->klucz = i;
 		*l = p;
 		p->nast = p;
 		p->pop = p;
 	}
 	else
 	{
-		n = (*l)->nast;
-		p->pop = *l;
-		p->nast = n;
-		(*l)->nast = p;
-		n->pop = p;
+		if((*l)->klucz <= i)
+		{
+			while((*l)->klucz < (*l)->nast->klucz && i > (*l)->nast->klucz)
+				l = &(*l)->nast;
+			AddElementCSorted(l, i);
+		}
+		else
+		{
+			p = (listaC)malloc(sizeof(elListyC));
+			p->klucz = i;
+			
+			p->pop = (*l)->pop;
+			p->nast = (*l);
+			(*l)->pop = p;
+			
+			p->pop->nast = p;
+			
+			*l = p;
+		}
 	}
+}
+
+void AddElementCSorted(listaC *l, int i)
+{
+	listaC p = 0, n = 0;
+	p = (listaC)malloc(sizeof(elListyC));
+	p->klucz = i;
+
+	p->pop = *l;
+	p->nast = (*l)->nast;
+	(*l)->nast = p;
+	p->nast->pop = p;
+
 }
 
 void RemoveElementC(listaC *l)

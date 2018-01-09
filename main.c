@@ -162,7 +162,7 @@ int main()
 							case 8:
 								printf("Number: ");
 								scanf("%d", &number);
-								lista x = SearchList(list, number, 0);
+								lista x = SearchList(list, number);
 								if(x != 0)
 									printf("%d \n", x->klucz);
 								else
@@ -197,7 +197,7 @@ int main()
 								AddElementSortedRec(&list, number);
 								break;
 							case 15:
-								//mergeLists2(&list, &list2);
+							//	mergeLists2(&list, &list2);
 								MergeLists(&list, &list2);
 								break;
 							case 16:

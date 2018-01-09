@@ -23,7 +23,7 @@ void RemoveLast(lista *l);
 lista ReverseList(lista *l);
 void PrintReversedList(lista *l);
 void PrintReversedListRec(lista l);
-lista* SearchList(lista list, int number, int first);
+lista* SearchList(lista list, int number);
 void RemoveElement(lista *l, int index);
 void RemoveAllOf(lista *l, int number);
 void RemoveAllOfRec(lista *l, int number);
