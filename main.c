@@ -197,7 +197,6 @@ int main()
 								AddElementSortedRec(&list, number);
 								break;
 							case 15:
-							//	mergeLists2(&list, &list2);
 								MergeLists(&list, &list2);
 								break;
 							case 16:

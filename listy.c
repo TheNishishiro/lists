@@ -425,29 +425,6 @@ void MergeLists(lista *l1, lista *l2)
 	}
 }
 
-void mergeLists2(lista *l1, lista *l2)
-{
-	lista p = *l1, q = *l2;
-	lista *Bk = l1;
-	while(p && q)
-	{
-		if(p->klucz < q->klucz)
-		{
-			Bk = &p->nast;
-			p = p->nast;
-		}	
-		else
-		{
-			Bk = &q->nast;
-			q = q->nast;
-		}
-	} 
-	if(p)
-		*Bk = p;
-	else 
-		*Bk = q;
-		
-}
 
 void FindDifference(lista *l1, lista *l2)
 {
