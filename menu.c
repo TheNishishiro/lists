@@ -94,8 +94,11 @@ void DrawMenu(int page, int *printType)
 	{
 		printf("%s PRIORITY LISTS %s", line, line);
 		printf("\n1) Add to priority list");
-		printf("\n2) Remove highest priority");
+		printf("\n2) Remove element");
 		printf("\n3) Edit priority");
+		printf("\n4) Add to priority list without order");
+		printf("\n5) Add to priority list with reversed order");
+		printf("\n6) Rearrange priority list");
 		*printType = 6;
 	}
 	else if(page == 7)
@@ -123,6 +126,10 @@ void DrawMenu(int page, int *printType)
 		printf("\n4) Print list array");
 		printf("\n5) Convert list to array");
 		printf("\n6) Reverse list graph");
+		printf("\n%s%s", line, line);
+		printf("\n7) Create prior list array");
+		printf("\n8) Print prior list array");
+		printf("\n9) Dijkstra");
 		*printType = 8;
 	}
 	

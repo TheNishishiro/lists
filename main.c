@@ -45,6 +45,7 @@ int main()
 	int* NeighborArray;
 	int graphPoints = 0; 
 	lista* ListArray;
+	listaPrior* ListPriorArray;
 
 	AddElement(&list2, 5);
 	AddElement(&list2, 8);
@@ -450,6 +451,27 @@ int main()
 								scanf("%d", &priority);
 								EditPrior(&listPrior, number, priority);
 								break;
+							case 4:
+								printf("Number: ");
+								scanf("%d", &number);
+								printf("Priority: ");
+								scanf("%d", &priority);
+								AddElementPrior(&listPrior, number, priority);
+								break;
+							case 5:
+								printf("Number: ");
+								scanf("%d", &number);
+								printf("Priority: ");
+								scanf("%d", &priority);
+								AddElementSortedPriorReverse(&listPrior, number, priority);
+								break;
+							case 6:
+								printf("Number: ");
+								scanf("%d", &number);
+								printf("Priority: ");
+								scanf("%d", &priority);
+								RearrangePriorList(&listPrior, number, priority);
+								break;
 							}
 							break;
 					case 7:
@@ -549,6 +571,19 @@ int main()
 								break;
 							case 6:	
 								ListArray = CreateGraphReversed(ListArray, graphPoints);
+								system("pause");
+								break;
+							case 7:	
+								printf("Insert number of points:\n");
+								scanf("%d", &graphPoints);
+								ListPriorArray = CreateGraphListPrior(graphPoints);
+								break;
+							case 8:	
+								PrintGraphListPrior(ListPriorArray, graphPoints);
+								system("pause");
+								break;
+							case 9:	
+								Dijkstra(ListPriorArray, graphPoints, 0);
 								system("pause");
 								break;
 						}
