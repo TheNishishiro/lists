@@ -188,11 +188,11 @@ void Relax(int u, int v, int w, listaPrior *Q)
 	}
 }
 
-void Dijkstra(listaPrior* graph, int n, int s)
+void Dijkstra(listaPrior* graph, int n, int source, int destination)
 {
 	int i = 0;
 	int u = 0;
-	Init_Single_Source(n, s);
+	Init_Single_Source(n, source);
 	
 	listaPrior Q = 0;
 	
@@ -208,8 +208,13 @@ void Dijkstra(listaPrior* graph, int n, int s)
 			Relax(u, S->klucz, S->priorytet, &Q);
 			S = S->nast;
 		}
-	}	
-	system("pause");
+	}
+	int w = destination;
+	while(w != -1)
+	{
+		printf(" <- %d", w);
+		w = p[w];
+	}
 }
 
 

@@ -583,7 +583,11 @@ int main()
 								system("pause");
 								break;
 							case 9:	
-								Dijkstra(ListPriorArray, graphPoints, 0);
+								printf("Source: ");
+								scanf("%d", &number);
+								printf("Destination: ");
+								scanf("%d", &priority);
+								Dijkstra(ListPriorArray, graphPoints, number, priority);
 								system("pause");
 								break;
 						}
