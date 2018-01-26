@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o graphs.o
-LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o graphs.o
+OBJ      = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o graphs.o filemanager.o
+LINKOBJ  = listy.o main.o menu.o listyC.o listyNC.o listyOC.o binaryTree.o listyPrior.o ONP.o Sorting.o binaryTreeCHAR.o graphs.o filemanager.o
 LIBS     = -L"D:/Programs/Dev-Cpp/MinGW64/lib" -L"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/Programs/Dev-Cpp/MinGW64/include" -I"D:/Programs/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Programs/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -59,3 +59,6 @@ binaryTreeCHAR.o: binaryTreeCHAR.c
 
 graphs.o: graphs.c
 	$(CC) -c graphs.c -o graphs.o $(CFLAGS)
+
+filemanager.o: filemanager.c
+	$(CC) -c filemanager.c -o filemanager.o $(CFLAGS)

@@ -118,36 +118,43 @@ void InsertionSort(int input[], int n, int print)
 	PrintStats("Insertion Sort", print, a, n);
 }
 
-void SelectionSort(int input[], int n, int print)
+void CountingSort(int input[], int n, int k, int print)
 {
-	int i, j, k, x;
+	int i, j=0, *C, *B;
 	int *a;
 	a = CopyArray(input, n);
+	C = malloc(sizeof(int) * k);
+	B = malloc(sizeof(int) * n);
 	comparisons = 0, substitution = 1;
 	
-	for(i = 0; i < n - 1; i++)
+	for(i = 0; i < k; i++)
 	{
-		k = i;
-		x = a[i];
-		for(j = i + 1; j < n; j++)
-		{
-			if(a[j] < x)
-			{
-				k = j;
-				x = a[j];
-				substitution += 2;
-			}
-			a[k] = a[i];
-			a[i] = x;
-			
-			comparisons += 2;
-			substitution += 3;
-		}
-		comparisons += 2;
-		substitution += 4;
+		comparisons++;
+		substitution+=2;
+		C[i] = 0;
 	}
-	
-	PrintStats("Selection Sort", print, a, n);
+	substitution++;
+	for(i = 0; i < n; i++)
+	{
+		comparisons++;
+		substitution+=2;
+		C[a[i]]++;
+	}
+	substitution++;
+	for(i = 0; i < k; i++)
+	{
+		comparisons++;
+		substitution++;
+		while(C[i]--)
+		{
+			comparisons++;
+			substitution+=3;
+			B[j++]=i;
+		}
+	}
+			
+	free(C);
+	PrintStats("Counting Sort:", print, B, n);
 }
 
 void BubbleSort(int input[], int n, int print)

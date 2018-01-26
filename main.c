@@ -15,6 +15,7 @@
 #include "Sorting.h"
 #include "binaryTreeCHAR.h"
 #include "graphs.h"
+#include "filemanager.h"
 
 int main()
 {
@@ -46,6 +47,8 @@ int main()
 	int graphPoints = 0; 
 	lista* ListArray;
 	listaPrior* ListPriorArray;
+
+	FileManager fm = 0, fm_root = 0, *ffm;
 
 	AddElement(&list2, 5);
 	AddElement(&list2, 8);
@@ -110,7 +113,12 @@ int main()
 		else if(printType == 5)
 			PrintBinaryTreeCHAR(treeC);
 		else if(printType == 6)
-			PrintListPrior(listPrior);	
+			PrintListPrior(listPrior);
+		else if(printType == 9)
+		{
+			PrintPath(fm_root);
+			PrintFolder(fm, fm_root);	
+		}
 		printf("\n>");
 		lista buf;
 		int num = 0;
@@ -154,7 +162,7 @@ int main()
 								FreeListRec(&list);
 								break;
 							case 6:
-								PrintReversedListRec(list);
+								PrintReversedList(list);
 								system("pause");
 								break;
 							case 7:
@@ -179,7 +187,6 @@ int main()
 								printf("Number: ");
 								scanf("%d", &number);
 								RemoveAllOfRec(&list, number);
-								RemoveAllOf(&list, number);
 								break;
 							case 11:
 								ReverseConnectionsRec(&list, 0, 0);
@@ -497,34 +504,48 @@ int main()
 								system("pause");
 								break;
 							case 3:
-								printArray(numbers, sizeOfArray);
+								printf("Size of array: ");
+								scanf("%d", &sizeOfArray);
+								numbers = calloc(sizeOfArray, sizeof(int));
+								for(i = 0; i < sizeOfArray; i++)
+								{
+									printf("Add to array: ");
+									scanf("%d", &number);
+									numbers[i] = number;
+								}
 								system("pause");
 								break;
 							case 4:
-								InsertionSort(numbers, sizeOfArray, 1);
+								printArray(numbers, sizeOfArray);
 								system("pause");
 								break;
 							case 5:
-								SelectionSort(numbers, sizeOfArray, 1);
+								InsertionSort(numbers, sizeOfArray, 1);
 								system("pause");
 								break;
 							case 6:
-								BubbleSort(numbers, sizeOfArray, 1);
+								printf("Numbers from 1 to k=: ");
+								scanf("%d", &number);
+								CountingSort(numbers, sizeOfArray, number, 1);
 								system("pause");
 								break;
 							case 7:
-								HeapSort(numbers, sizeOfArray, 1);
+								BubbleSort(numbers, sizeOfArray, 1);
 								system("pause");
 								break;
 							case 8:
-								Quicksort(numbers, 0, sizeOfArray, 1);
+								HeapSort(numbers, sizeOfArray, 1);
 								system("pause");
 								break;
 							case 9:
-								ShellSort(numbers, sizeOfArray, 1);
+								Quicksort(numbers, 0, sizeOfArray, 1);
 								system("pause");
 								break;
 							case 10:
+								ShellSort(numbers, sizeOfArray, 1);
+								system("pause");
+								break;
+							case 11:
 								printf("Print sorted arrays? [0/1]\n");
 								scanf("%d", &number);
 								BubbleSort(numbers, sizeOfArray, number);
@@ -534,7 +555,7 @@ int main()
 								HeapSort(numbers, sizeOfArray, number);
 								system("pause");
 								break;
-							case 11:
+							case 12:
 								printf("Size of array: ");
 								scanf("%d", &sizeOfArray);
 								numbersF = float_rand(sizeOfArray);
@@ -588,6 +609,47 @@ int main()
 								printf("Destination: ");
 								scanf("%d", &priority);
 								Dijkstra(ListPriorArray, graphPoints, number, priority);
+								system("pause");
+								break;
+						}
+						break;
+					case 9:
+						switch(options)
+						{
+							case 1:
+								printf("Folder name: ");
+								scanf("%s", text);
+								AddToFolder(&fm, &fm_root, text);
+								memset(text, 0, sizeof text);
+								break;
+							case 2:
+								printf("Folder name: ");
+								scanf("%s", text);
+								EnterFolder(&fm, &fm_root, text);
+								memset(text, 0, sizeof text);
+								break;
+							case 3:
+								LeaveFolder(&fm, &fm_root);
+								break;
+							case 4:
+								printf("Folder name: ");
+								scanf("%s", text);
+								RemoveFile(&fm, &fm_root, text);
+								memset(text, 0, sizeof text);
+								break;
+							case 5:
+								EmptyFolder(&fm);
+							//	fm_root->sub = 0;
+								break;
+							case 6:
+								printf("Folder name: ");
+								scanf("%s", text);
+								ffm = FindFolder(&fm, text);
+								if(ffm == 0)
+									printf("Not found");
+								else
+									printf("%s [%d]\n", (*ffm)->klucz, ffm);
+								memset(text, 0, sizeof text);
 								system("pause");
 								break;
 						}
